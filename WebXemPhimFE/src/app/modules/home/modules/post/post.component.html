@@ -1,0 +1,11 @@
+<h1>
+    {{phim.tenPhim}}
+</h1>
+<div style="font-style: italic; color: grey; margin-bottom: 30px;">
+    Posted by Admin in {{phim.ngayBatDau | date : 'dd/MM/yyy h:mm:ss a'}}
+</div>
+<div [innerHTML]="phim.tenPhim"></div>
+
+<app-comment-of-post [id]="id" [comments]="comment">
+
+</app-comment-of-post>

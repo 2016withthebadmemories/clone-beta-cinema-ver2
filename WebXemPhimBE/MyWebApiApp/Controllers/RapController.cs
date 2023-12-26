@@ -22,19 +22,13 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Rap>> GetAllBinhLuan()
+        public async Task<IEnumerable<Rap>> GetAllRap()
         {
             return await _dbContext.Raps.ToListAsync();
         }
 
-        [HttpGet("{id}")]
-        public async Task<Rap> GetBinhLuanById(int id)
-        {
-            return await _dbContext.Raps.FindAsync(id);
-        }
-
         [HttpPost]
-        public async Task AddBinhLuan(RapModel input)
+        public async Task AddRap(RapModel input)
         {
             var comment = new Rap
             {
@@ -47,14 +41,14 @@ namespace MyWebApiApp.Controllers
             await _dbContext.SaveChangesAsync();
         }
         [HttpPut]
-        public async Task UpdateBinhLuan(Rap comment)
+        public async Task UpdateRap(Rap comment)
         {
             _dbContext.Entry(comment).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
         [HttpDelete]
-        public async Task DeleteBinhLuan(int id)
+        public async Task DeleteRap(int id)
         {
             var commentId = _dbContext.Raps.Where(x => x.MaRap == id).FirstOrDefault();
             _dbContext.Raps.Remove(commentId);

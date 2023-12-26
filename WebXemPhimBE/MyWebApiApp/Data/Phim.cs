@@ -36,9 +36,10 @@ namespace MyWebApiApp.Data
         public string TheLoai {  get; set; }
 
         public bool TrangThai { get; set; }
+        public string ThoiLuong { get; set; }
 
         public int MaRap {  get; set; }
         [ForeignKey(nameof(MaRap))]
-        public KhuyenMai Rap { get; set; }
+        public Rap Rap { get; set; }
     }
 }

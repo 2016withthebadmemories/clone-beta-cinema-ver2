@@ -11,8 +11,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   public fg = new FormGroup({
-    userName: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    email: new FormControl('', Validators.required),
+    matKhau: new FormControl('', Validators.required)
   })
   constructor(private userService: UserService, private authService:AuthService, private router: Router) {
     
@@ -27,8 +27,8 @@ export class LoginComponent {
       return;
     } else {
       const data: Login = {
-        userName : this.fg.get("userName")?.value || "",
-        password : this.fg.get("password")?.value || "",
+        email : this.fg.get("email")?.value || "",
+        matKhau : this.fg.get("matKhau")?.value || "",
       }
       this.userService.login(data).subscribe(rs => {
         if (rs.success) {

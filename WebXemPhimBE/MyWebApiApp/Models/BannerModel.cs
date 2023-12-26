@@ -1,9 +1,8 @@
-﻿namespace MyWebApiApp.Models
-{
-    public class BannerModel
-    {
-        public int MaBanner { get; set; }
+﻿using Microsoft.AspNetCore.Http;
 
-        public string Ten { get; set; }
+namespace MyWebApiApp.Models
+{
+    public class BannerModel { 
+        public IFormFile Anh { get; set; }
     }
 }

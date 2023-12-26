@@ -1,3 +1,4 @@
+import { RapDto } from './../../../services/rap.service';
 import { TopicService } from 'src/services/topic.service';
 import { PostService } from './../../../services/post.service';
 import { Component } from '@angular/core';
@@ -6,6 +7,7 @@ import { PhimDto } from './modules/post/post.component';
 import { CommentService } from 'src/services/comment.service';
 import { BinhLuanDto } from '../admin/modules/comment/list-comment/list-comment.component';
 import { Router } from '@angular/router';
+import { RapService } from 'src/services/rap.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +18,7 @@ export class HomeComponent {
   public topic: topicDto[] = [];
   public post: PhimDto[] = [];
   public comment: BinhLuanDto[] = [];
+  public raps: RapDto[] = [];
   public searchText = "";
   public selectedRap: string = "";
   public isDropdownOpen: boolean = false;
@@ -23,12 +26,15 @@ export class HomeComponent {
     private postService: PostService,
     private topicService: TopicService,
     private commentService: CommentService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private rapService: RapService
+  ) { 
+  }
   
   ngOnInit() {
     this.getAllPost();
     this.getAllTopic();
+    this.getAllRap();
   }
   getAllPost() {
     this.postService.getAllPost().subscribe(rs => {
@@ -73,4 +79,10 @@ export class HomeComponent {
       }
     })
   }
+  getAllRap() {
+    this.rapService.getAllRap().subscribe((rs) => {
+      this.raps = rs;
+    });
+  }
+  
 }

@@ -24,6 +24,6 @@ namespace MyWebApiApp.Data
 
         public int MaRap {  get; set; }
         [ForeignKey(nameof(MaRap))]
-        public KhuyenMai Rap { get; set; }
+        public Rap Rap { get; set; }
     }
 }

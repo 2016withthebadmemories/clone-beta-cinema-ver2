@@ -54,6 +54,7 @@ namespace MyWebApiApp.Controllers
                 TheLoai = input.TheLoai,
                 TrangThai = input.TrangThai,
                 MaRap = input.MaRap,
+                ThoiLuong = input.ThoiLuong,
 
             };
             await _dbContext.AddAsync(phim);

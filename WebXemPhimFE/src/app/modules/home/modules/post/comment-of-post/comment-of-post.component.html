@@ -1,15 +1,15 @@
 <div class="comment-box">
-    <h2>Leave a Comment</h2>
+    <h2>Để lại bình luận</h2>
     <form (submit)="onSubmit()">
       <div class="form-group" style="width: 100%;">
-        <label for="name">Name:</label>
+        <label for="name">Tên của bạn:</label>
         <input type="text" id="name" name="name" required [(ngModel)]="name">
       </div>
       <div class="form-group" style="width: 100%;">
-        <label for="comment">Comment:</label>
+        <label for="comment">Nội dung:</label>
         <textarea id="comment" name="comment" required [(ngModel)]="comment"></textarea>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit">Gửi</button>
     </form>
   </div>
 <div class="p-2">

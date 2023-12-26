@@ -34,6 +34,8 @@ namespace MyWebApiApp.Models
 
         public bool TrangThai { get; set; }
 
+        public string ThoiLuong { get; set; }
+
         public int MaRap { get; set; }
     }
 }

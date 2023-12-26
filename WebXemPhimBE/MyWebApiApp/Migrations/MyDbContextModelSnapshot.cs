@@ -215,6 +215,9 @@ namespace MyWebApiApp.Migrations
                     b.Property<string>("TheLoai")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ThoiLuong")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TrangThai")
                         .HasColumnType("bit");
 

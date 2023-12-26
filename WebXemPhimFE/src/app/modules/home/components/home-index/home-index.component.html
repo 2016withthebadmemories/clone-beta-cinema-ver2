@@ -1,11 +1,40 @@
-<h2>Các bài viết nổi bật</h2>
-          <div class="row">
-            <div class="col-md-4 mb-3"  *ngFor="let item of post">
-              <div class="card">
-                <img style="width: 255px; height: 144px;" [src]="item.anhPhim" class="card-img-top" alt="..." routerLink="/home/post/{{item.maPhim}}">
-                <div style="width: 255px;height: 95px;" class="card-body">
-                  <b><h4 class="card-title">{{item.tenPhim}}</h4></b>
-                </div>
-              </div>
-            </div>
+<swiper-container 
+  navigation="true"
+  pagination="true"
+  pagination-clickable="true"
+  loop="true"
+  autoplay="true">
+  <swiper-slide *ngFor="let banner of banners">
+    <img [src]="banner.ten" alt="">
+  </swiper-slide>
+</swiper-container>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-8">
+      <div class="row">
+        <span class="custom-font" style="font-size: 30px; margin-top: 10px;">Bạn đang xem phim chiếu tại rạp: Thanh Xuân</span>
+        <div class="col-md-3" *ngFor="let item of phims">
+          <div style="margin: 20px 20px;">
+            <img style="width: 227px; height: 360px; border-radius: 21px;" [src]="item.anhPhim" class="card-img-top" alt="..." routerLink="/home/post/{{item.maPhim}}">
+            <b><h4 class="custom-font">{{item.tenPhim}}</h4></b>
+              <div class="custom-font">
+                <span class="text">
+                  Thể Loại:
+                </span>{{item.theLoai}}</div>
+              <div class="custom-font">
+                <span class="text">
+                  Thời Lượng:
+              </span>{{item.thoiLuong}} phút</div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+    </div>
+  </div>
+</div>

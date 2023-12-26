@@ -24,8 +24,8 @@ export class UserService {
 }
 
 export interface Login {
-    userName: string,
-    password: string
+    email: string,
+    matKhau: string
 }
 
 export interface LoginResponse {

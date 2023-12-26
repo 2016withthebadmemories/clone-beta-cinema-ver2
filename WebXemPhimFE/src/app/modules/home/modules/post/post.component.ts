@@ -52,4 +52,5 @@ export interface PhimDto {
   theLoai: string;
   trangThai: boolean;
   maRap: string;
+  thoiLuong: string;
 }

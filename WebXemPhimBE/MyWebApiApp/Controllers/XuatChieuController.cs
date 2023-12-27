@@ -12,11 +12,11 @@ namespace MyWebApiApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class XuanChieuController : ControllerBase
+    public class XuatChieuController : ControllerBase
     {
         private readonly MyDbContext _dbContext;
 
-        public XuanChieuController(MyDbContext context)
+        public XuatChieuController(MyDbContext context)
         {
             _dbContext = context;
         }
@@ -38,7 +38,7 @@ namespace MyWebApiApp.Controllers
         [HttpPost]
         public async Task AddXuatChieu(XuatChieuModel input)
         {
-            var comment = new XuatChieu
+            var xc = new XuatChieu
             {
                 MaXuatChieu = input.MaXuatChieu,
                 NgayChieu = input.NgayChieu,
@@ -46,15 +46,15 @@ namespace MyWebApiApp.Controllers
                 Phut = input.Phut,
                 MaPhim = input.MaPhim
             };
-            await _dbContext.AddAsync(comment);
+            await _dbContext.AddAsync(xc);
             await _dbContext.SaveChangesAsync();
         }
        
         [HttpDelete]
         public async Task DeleteXuatChieu(int id)
         {
-            var commentId = _dbContext.XuatChieus.Where(x => x.MaXuatChieu == id).FirstOrDefault();
-            _dbContext.XuatChieus.Remove(commentId);
+            var xcId = _dbContext.XuatChieus.Where(x => x.MaXuatChieu == id).FirstOrDefault();
+            _dbContext.XuatChieus.Remove(xcId);
             await _dbContext.SaveChangesAsync();
         }
     }

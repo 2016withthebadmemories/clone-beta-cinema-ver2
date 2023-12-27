@@ -5,23 +5,23 @@ import { HttpClient } from '@angular/common/http'
 @Injectable({
     providedIn:'root'
 })
-export class XuanChieuService {
+export class XuatChieuService {
     constructor(private httpClient: HttpClient) {
         
     }
 
-    getAllXuanChieu() {
-       return this.httpClient.get<XuatChieuDto[]>(environment.baseApiUrl + "XuanChieu");
+    getAllXuatChieu() {
+       return this.httpClient.get<XuatChieuDto[]>(environment.baseApiUrl + "XuatChieu");
     }
 
-    getXuanChieuByPhimId(model: XuatChieuRequest) {
-        return this.httpClient.post<XuatChieuDto[]>(`${environment.baseApiUrl}XuanChieu/byPhim`, model);
+    getXuatChieuByPhimId(model: XuatChieuRequest) {
+        return this.httpClient.post<XuatChieuDto[]>(`${environment.baseApiUrl}XuatChieu/byPhim`, model);
     }    
-    createXuanChieu(data: XuatChieuDto) {
-        return this.httpClient.post<XuatChieuDto>(environment.baseApiUrl + "XuanChieu", data)
+    createXuatChieu(data: XuatChieuDto) {
+        return this.httpClient.post<XuatChieuDto>(environment.baseApiUrl + "XuatChieu", data)
     }
     delete(id: number) {
-        return this.httpClient.delete(environment.baseApiUrl + `XuanChieu?id=${id}`);
+        return this.httpClient.delete(environment.baseApiUrl + `XuatChieu?id=${id}`);
     }
 }
 

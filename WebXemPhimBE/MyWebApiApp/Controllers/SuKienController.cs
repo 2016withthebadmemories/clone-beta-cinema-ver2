@@ -21,21 +21,21 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<SuKien>> GetAllBinhLuan()
+        public async Task<IEnumerable<SuKien>> GetAllSuKien()
         {
             return await _dbContext.SuKiens.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<SuKien> GetBinhLuanById(int id)
+        public async Task<SuKien> GetSuKienById(int id)
         {
             return await _dbContext.SuKiens.FindAsync(id);
         }
 
         [HttpPost]
-        public async Task AddBinhLuan(SuKienModel input)
+        public async Task AddSuKien(SuKienModel input)
         {
-            var comment = new SuKien
+            var sk = new SuKien
             {
                 MaSuKien = input.MaSuKien,
                 TenSuKien = input.TenSuKien,
@@ -46,21 +46,21 @@ namespace MyWebApiApp.Controllers
                 NoiDung = input.NoiDung,
                 MaRap = input.MaRap,
             };
-            await _dbContext.AddAsync(comment);
+            await _dbContext.AddAsync(sk);
             await _dbContext.SaveChangesAsync();
         }
         [HttpPut]
-        public async Task UpdateBinhLuan(SuKien comment)
+        public async Task UpdateSuKien(SuKien sk)
         {
-            _dbContext.Entry(comment).State = EntityState.Modified;
+            _dbContext.Entry(sk).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
         [HttpDelete]
-        public async Task DeleteBinhLuan(int id)
+        public async Task DeleteSuKien(int id)
         {
-            var commentId = _dbContext.SuKiens.Where(x => x.MaSuKien == id).FirstOrDefault();
-            _dbContext.SuKiens.Remove(commentId);
+            var skId = _dbContext.SuKiens.Where(x => x.MaSuKien == id).FirstOrDefault();
+            _dbContext.SuKiens.Remove(skId);
             await _dbContext.SaveChangesAsync();
         }
     }

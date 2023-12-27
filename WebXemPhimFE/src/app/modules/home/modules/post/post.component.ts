@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BinhLuanDto } from 'src/app/modules/admin/modules/comment/list-comment/list-comment.component';
 import { CommentService } from 'src/services/comment.service';
-import { XuanChieuService, XuatChieuDto, XuatChieuRequest } from 'src/services/xuatChieu.service';
+import { XuatChieuService, XuatChieuDto, XuatChieuRequest } from 'src/services/xuatChieu.service';
 
 @Component({
   selector: 'app-post',
@@ -23,7 +23,7 @@ export class PostComponent {
     private postService: PostService,
     private activatedRoute: ActivatedRoute,
     private commentService: CommentService,
-    private xuanChieuService: XuanChieuService
+    private xuatChieuService: XuatChieuService
   ) { }
   
   ngOnInit() {
@@ -42,7 +42,7 @@ export class PostComponent {
       this.selectedItem = null;
     } else {
       this.selectedItem = item;
-      this.getXuanChieuByPhimId(this.selectedItem.getDate(), this.selectedItem.getMonth()+1 , this.selectedItem.getFullYear(), this.id);
+      this.getXuatChieuByPhimId(this.selectedItem.getDate(), this.selectedItem.getMonth()+1 , this.selectedItem.getFullYear(), this.id);
     }
   }
 
@@ -61,14 +61,14 @@ export class PostComponent {
     });
   }
 
-  getXuanChieuByPhimId(ngay: number, thang: number, nam: number, maPhim: number) {
+  getXuatChieuByPhimId(ngay: number, thang: number, nam: number, maPhim: number) {
     this.xuatchieurequest = {
       ngay: ngay,
       thang: thang,
       nam: nam,
       maPhim: maPhim,
     }
-    this.xuanChieuService.getXuanChieuByPhimId(this.xuatchieurequest).subscribe((rs) => {
+    this.xuatChieuService.getXuatChieuByPhimId(this.xuatchieurequest).subscribe((rs) => {
       this.xuatChieus = rs;
     });
   }

@@ -30,28 +30,28 @@ namespace MyWebApiApp.Controllers
         [HttpPost]
         public async Task AddRap(RapModel input)
         {
-            var comment = new Rap
+            var rap = new Rap
             {
                 MaRap = input.MaRap,
                 TenRap = input.TenRap,
                 DiaChi = input.DiaChi,
                 MaTaiKhoan = input.MaTaiKhoan,
             };
-            await _dbContext.AddAsync(comment);
+            await _dbContext.AddAsync(rap);
             await _dbContext.SaveChangesAsync();
         }
         [HttpPut]
-        public async Task UpdateRap(Rap comment)
+        public async Task UpdateRap(Rap rap)
         {
-            _dbContext.Entry(comment).State = EntityState.Modified;
+            _dbContext.Entry(rap).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
         [HttpDelete]
         public async Task DeleteRap(int id)
         {
-            var commentId = _dbContext.Raps.Where(x => x.MaRap == id).FirstOrDefault();
-            _dbContext.Raps.Remove(commentId);
+            var rapId = _dbContext.Raps.Where(x => x.MaRap == id).FirstOrDefault();
+            _dbContext.Raps.Remove(rapId);
             await _dbContext.SaveChangesAsync();
         }
     }

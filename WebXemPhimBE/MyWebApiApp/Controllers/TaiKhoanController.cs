@@ -45,7 +45,7 @@ namespace MyWebApiApp.Controllers
         [HttpPost]
         public async Task Add(TaiKhoanModel input)
         {
-            var comment = new TaiKhoan
+            var us = new TaiKhoan
             {
                 MaTaiKhoan = input.MaTaiKhoan,
                 MatKhau = input.MatKhau,
@@ -55,7 +55,7 @@ namespace MyWebApiApp.Controllers
                 NgaySinh = input.NgaySinh,
                 LoaiTaiKhoan = input.LoaiTaiKhoan
             };
-            await _dbContext.AddAsync(comment);
+            await _dbContext.AddAsync(us);
             await _dbContext.SaveChangesAsync();
         }
         //[HttpPut]
@@ -68,8 +68,8 @@ namespace MyWebApiApp.Controllers
         [HttpDelete]
         public async Task Delete(int id)
         {
-            var commentId = _dbContext.TaiKhoans.Where(x => x.MaTaiKhoan == id).FirstOrDefault();
-            _dbContext.TaiKhoans.Remove(commentId);
+            var usId = _dbContext.TaiKhoans.Where(x => x.MaTaiKhoan == id).FirstOrDefault();
+            _dbContext.TaiKhoans.Remove(usId);
             await _dbContext.SaveChangesAsync();
         }
 

@@ -9,11 +9,13 @@ import { FormsModule } from '@angular/forms';
 
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
+import { LoginComponent } from './modules/login/login.component';
+import { RegisterComponent } from './modules/register/register.component';
 // register Swiper custom elements
 register();
 
 @NgModule({
-  declarations: [HomeComponent, HomeIndexComponent, TopicComponent, SearchComponent],
+  declarations: [HomeComponent, HomeIndexComponent, TopicComponent, SearchComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

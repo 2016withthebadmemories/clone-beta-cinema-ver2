@@ -31,4 +31,6 @@ export interface BinhLuanDto{
   ngayBinhLuan: string;
   maTaiKhoan: string;
   maPhim: number;
+  anhDaiDien: string;
+  email: string;
 }

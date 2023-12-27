@@ -23,10 +23,38 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Phim>> GetAllPhim()
+        public async Task<IEnumerable<Phim>> GetAllDistinctPhimNames()
         {
-            return await _dbContext.Phims.ToListAsync();
+            var distinctPhimNames = await _dbContext.Phims
+                                                    .Select(p => p.TenPhim)
+                                                    .Distinct()
+                                                    .Select(tenPhim => _dbContext.Phims.First(p => p.TenPhim == tenPhim))
+                                                    .ToListAsync();
+
+            return distinctPhimNames;
         }
+
+
+        [HttpGet("tenRap={tenRap}")]
+        public async Task<IEnumerable<Phim>> GetAllPhimByRap(string tenRap = null)
+        {
+            if (string.IsNullOrEmpty(tenRap))
+            {
+                var distinctPhimNames = await _dbContext.Phims
+                                                      .Select(p => p.TenPhim)
+                                                      .Distinct()
+                                                      .Select(tenPhim => _dbContext.Phims.First(p => p.TenPhim == tenPhim))
+                                                      .ToListAsync();
+
+                return distinctPhimNames;
+            }
+            else
+            {
+                var rapDetail = _dbContext.Raps.Where(x => x.TenRap == tenRap).FirstOrDefault();
+                return await _dbContext.Phims.Where(x => x.MaRap == rapDetail.MaRap).ToListAsync();
+            }
+        }
+
 
         [HttpGet("{id}")]
         public async Task<Phim> GetPhimById(int id)
@@ -91,6 +119,7 @@ namespace MyWebApiApp.Controllers
                             Email = result.ThongTinNguoiDung.Email,
                             AnhDaiDien = result.ThongTinNguoiDung.AnhDaiDien,
                             NoiDung = result.BinhLuan.NoiDung,
+                            NgayBinhLuan = result.BinhLuan.NgayBinhLuan,
                         })
                         .ToListAsync();
         }

@@ -7,6 +7,8 @@ namespace MyWebApiApp.Models
         public bool Success { get; set; }
         public string Message { get; set; }
         public object Data { get; set; }
+        public int MaTaiKhoan { get; set; }
+        public string Email { get; set; }
     }
 
     public class LoginModel

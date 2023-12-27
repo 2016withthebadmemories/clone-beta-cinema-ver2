@@ -1,0 +1,34 @@
+<div class="container-fluid bg">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+  
+      <div class="col-md-8" style="margin-top: 200px;">
+        <div class="row">
+          <h2>Đăng Ký</h2>
+          <form (ngSubmit)="submit($event)">
+            <div>
+              <label for="username">Email :</label>
+              <input type="text" class="form-control" id="username" name="username" [(ngModel)]="email" required>
+            </div>
+            <div>
+              <label for="password">Mật Khẩu :</label>
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="matKhau" required>
+            </div>
+            <div>
+                <label for="username">Số điện thoại :</label>
+                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="soDienThoai" required>
+            </div>
+            <!-- <div>
+                <label for="username">Ảnh Đại Diện:</label>
+                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="anhDaiDien" required>
+            </div> -->
+            <button class="btn btn-success" type="submit">Đăng ký</button>
+          </form>
+        </div>
+      </div>
+  
+      <div class="col-md-2">
+      </div>
+    </div>
+  </div>

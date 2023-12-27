@@ -106,3 +106,10 @@ a:hover{
 .m-auto{
   margin: auto;
 }
+img {
+  object-fit: cover; /* hoặc contain, fill, none tùy thuộc vào yêu cầu của bạn */
+  max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+  max-height: 100%;
+  width: 59px; /* Đảm bảo tỷ lệ khung hình được duy trì */
+  height: 55px;
+}

@@ -14,6 +14,7 @@ export class CommentOfPostComponent {
   public name: string = '';
   public email: string = '';
   public comment: string = '';
+  public ngayBinhLuan: string = '';
   commentContent = '';
   @Input() id: number = 0;
 
@@ -23,15 +24,14 @@ export class CommentOfPostComponent {
   ) { }
 
   onSubmit() {
+    const maTaiKhoan = localStorage.getItem("maTaiKhoan");
     const comment = {
-      maTaiKhoan: this.name,
       noiDung: this.comment,
-      maPhim: this.id
+      maPhim: this.id,
+      maTaiKhoan: maTaiKhoan
     } as BinhLuanDto;
     this.commentService.createComment(comment).subscribe(s => {
       this.GetAll();
-      this.name = '';
-      this.comment = '';
     });
   }
 
@@ -41,6 +41,7 @@ export class CommentOfPostComponent {
   GetAll() {
     this.postService.getComment(this.id).subscribe(s => 
       {
+        console.log("🚀 ~ file: comment-of-post.component.ts:45 ~ CommentOfPostComponent ~ GetAll ~ comments:", s);
         this.comments = s;  
       });
   }

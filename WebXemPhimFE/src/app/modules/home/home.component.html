@@ -19,8 +19,9 @@
           <li><a href="#">Rạp</a>
           <li><a href="#">Giá Vé</a>
           <li><a href="#">Khuyến Mại</a>
-          <li><a href="#">Đăng Ký</a>
-          <li><a href="#">Đăng Nhập</a>
+          <li *ngIf="isShowBtnLgLo"><a routerLink="/home/register">Đăng Ký</a>
+          <li *ngIf="isShowBtnLgLo"><a routerLink="/home/login">Đăng Nhập</a>
+          <li *ngIf="!isShowBtnLgLo" (click)="logOut()"><a>Đăng Xuất</a>
         </ul>
       </div>
     </div>
@@ -34,7 +35,7 @@
   </head>
   <body style="margin-top: 69px;">
     <div>
-      <router-outlet [selectedRap]="selectedRap"></router-outlet>
+      <router-outlet [selectedRaps]="selectedRap"></router-outlet>
     </div>
     <footer class="text-dark py-3" style="background-color: whitesmoke;">
       <div class="container">
@@ -42,7 +43,7 @@
           <div class="col-md-6">
           <h5 style="font-family: 'Oswald'; font-size: 16px;" >Liên hệ với chúng tôi qua: </h5>
             <p style="font-family: 'Oswald'; font-size: 16px;">Số điện thoại: 0369368521</p>
-            <p style="font-family: 'Oswald'; font-size: 16px;">Email: NDTBETA@gmail.com</p>
+            <p style="font-family: 'Oswald'; font-size: 16px;">Email: NDTBETAgmail.com</p>
           </div>
           <div class="col-md-6">
             <h5 style="font-family: 'Oswald'; font-size: 16px;">Theo dõi chúng tôi trên: </h5>

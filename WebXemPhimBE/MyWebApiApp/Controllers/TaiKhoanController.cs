@@ -91,7 +91,9 @@ namespace MyWebApiApp.Controllers
             {
                 Success = true,
                 Message = "Authenticate success",
-                Data = GenerateToken(user)
+                Data = GenerateToken(user),
+                MaTaiKhoan = user.MaTaiKhoan,
+                Email = user.Email,
             });
         }
 

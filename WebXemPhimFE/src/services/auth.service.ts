@@ -13,7 +13,11 @@ export class AuthService {
 
     setToken(token: string) {
         this.authToken$.next(token);
-        localStorage.setItem("token",token)
+        localStorage.setItem("token", token)
+    }
+    setInfo(info: any) {
+        localStorage.setItem("maTaiKhoan",JSON.stringify(info.maTaiKhoan))
+        localStorage.setItem("email",JSON.stringify(info.email))
     }
 
 }

@@ -11,7 +11,7 @@ export class UserService {
     }
 
     getUser() {
-       return this.httpClient.get(environment.baseApiUrl + "TaiKhoan");
+        return this.httpClient.get(environment.baseApiUrl + "TaiKhoan");
     }
 
     getUserById(id: number) {
@@ -21,6 +21,11 @@ export class UserService {
     login(data: Login) {
         return this.httpClient.post<LoginResponse>(environment.baseApiUrl + "TaiKhoan/Login", data)
     }
+
+    register(data: Register) {
+        return this.httpClient.post(environment.baseApiUrl + "TaiKhoan", data)
+    }
+    
 }
 
 export interface Login {
@@ -28,8 +33,16 @@ export interface Login {
     matKhau: string
 }
 
+export interface Register {
+    email: string,
+    matKhau: string,
+    soDienThoai: string
+}
+
 export interface LoginResponse {
     success: boolean,
     message: string,
     data: string,
+    email: string
+    maTaiKhoan: number
   }

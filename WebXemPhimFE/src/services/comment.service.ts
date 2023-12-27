@@ -20,7 +20,7 @@ export class CommentService {
         return this.httpClient.get<BinhLuanDto>(environment.baseApiUrl + `BinhLuan/${id}`)
     }
     createComment(data: BinhLuanDto) {
-        return this.httpClient.post(environment.baseApiUrl + "BinhLuan", data)
+        return this.httpClient.post<BinhLuanDto>(environment.baseApiUrl + "BinhLuan", data)
     }
     delete(id: number) {
         return this.httpClient.delete(environment.baseApiUrl + `BinhLuan?id=${id}`);

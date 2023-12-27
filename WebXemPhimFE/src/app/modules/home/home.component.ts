@@ -22,6 +22,7 @@ export class HomeComponent {
   public searchText = "";
   public selectedRap: string = "";
   public isDropdownOpen: boolean = false;
+  public isShowBtnLgLo: boolean = true;
   constructor(
     private postService: PostService,
     private topicService: TopicService,
@@ -32,6 +33,13 @@ export class HomeComponent {
   }
   
   ngOnInit() {
+    const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
+    const maTaiKhoan = localStorage.getItem("maTaiKhoan");
+    if (token) {
+      this.isShowBtnLgLo = false;
+    }
+    console.log("🚀 ~ file: home.component.ts:41 ~ HomeComponent ~ ngOnInit ~ isShowBtnLgLo:", this.isShowBtnLgLo);
     this.getAllPost();
     this.getAllTopic();
     this.getAllRap();
@@ -57,6 +65,11 @@ export class HomeComponent {
 
   onRapSelect(rap: string): void {
     this.selectedRap = rap;
+    this.router.navigate(['/home'], {
+      queryParams: {
+        rap: this.selectedRap
+      }
+    });
     this.isDropdownOpen = false;
   }
   getCurrentDateTime() {
@@ -83,6 +96,11 @@ export class HomeComponent {
     this.rapService.getAllRap().subscribe((rs) => {
       this.raps = rs;
     });
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.isShowBtnLgLo = true;
   }
   
 }

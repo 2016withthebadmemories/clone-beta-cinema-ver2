@@ -19,6 +19,10 @@ export class PostService {
     getPostById(id: number) {
         return this.httpClient.get<PhimDto>(environment.baseApiUrl + `Phim/${id}`)
     }
+
+    getPhimByRap(tenRap: string) {
+        return this.httpClient.get<PhimDto[]>(environment.baseApiUrl + `Phim/tenRap=${tenRap}`)
+    }
     getComment(postId: number) {
         return this.httpClient.get<BinhLuanDto[]>(environment.baseApiUrl + `Phim/postId=${postId}`)
     }

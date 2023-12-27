@@ -21,21 +21,21 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<KhuyenMai>> GetAllBinhLuan()
+        public async Task<IEnumerable<KhuyenMai>> GetAllKhuyenMai()
         {
             return await _dbContext.KhuyenMais.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<KhuyenMai> GetBinhLuanById(int id)
+        public async Task<KhuyenMai> GetKhuyenMaiById(int id)
         {
             return await _dbContext.KhuyenMais.FindAsync(id);
         }
 
         [HttpPost]
-        public async Task AddBinhLuan(KhuyenMaiModel input)
+        public async Task AddKhuyenMai(KhuyenMaiModel input)
         {
-            var comment = new KhuyenMai
+            var km = new KhuyenMai
             {
                 MaKhuyenMai = input.MaKhuyenMai,
                 ChuDe = input.ChuDe,
@@ -45,21 +45,21 @@ namespace MyWebApiApp.Controllers
                 AnhKhuyenMai = input.AnhKhuyenMai,
                 MaPhim = input.MaPhim,
             };
-            await _dbContext.AddAsync(comment);
+            await _dbContext.AddAsync(km);
             await _dbContext.SaveChangesAsync();
         }
         [HttpPut]
-        public async Task UpdateBinhLuan(KhuyenMai comment)
+        public async Task UpdateKhuyenMai(KhuyenMai km)
         {
-            _dbContext.Entry(comment).State = EntityState.Modified;
+            _dbContext.Entry(km).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
         [HttpDelete]
-        public async Task DeleteBinhLuan(int id)
+        public async Task DeleteKhuyenMai(int id)
         {
-            var commentId = _dbContext.KhuyenMais.Where(x => x.MaKhuyenMai == id).FirstOrDefault();
-            _dbContext.KhuyenMais.Remove(commentId);
+            var kmId = _dbContext.KhuyenMais.Where(x => x.MaKhuyenMai == id).FirstOrDefault();
+            _dbContext.KhuyenMais.Remove(kmId);
             await _dbContext.SaveChangesAsync();
         }
     }

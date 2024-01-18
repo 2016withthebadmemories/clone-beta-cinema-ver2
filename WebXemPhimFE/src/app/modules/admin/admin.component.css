@@ -33,11 +33,11 @@
 
  :host mat-sidenav {
     width: 300px;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
  }
 
  :host mat-button-toggle  {
-    background-color: antiquewhite;
+    background-color: whitesmoke;
 
  }
 
@@ -45,4 +45,8 @@
     text-align: center;
     margin-bottom: 0;
     padding: 20px 0;
+ }
+ .line {
+    margin-bottom: 10px;
+    font-size: 20px;
  }

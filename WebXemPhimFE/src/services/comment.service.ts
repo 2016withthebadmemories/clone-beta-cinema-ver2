@@ -1,4 +1,4 @@
-import { BinhLuanDto } from './../app/modules/admin/modules/comment/list-comment/list-comment.component';
+import { BinhLuanDto, GetBinhLuanDto } from './../app/modules/admin/modules/comment/list-comment/list-comment.component';
 import { PhimDto } from './../app/modules/home/modules/post/post.component';
 import { environment } from './../environments/environment';
 import { Injectable } from "@angular/core";
@@ -13,7 +13,7 @@ export class CommentService {
     }
 
     getAllComment() {
-       return this.httpClient.get<BinhLuanDto[]>(environment.baseApiUrl + "BinhLuan");
+       return this.httpClient.get<GetBinhLuanDto[]>(environment.baseApiUrl + "BinhLuan");
     }
 
     getCommentById(id: number) {

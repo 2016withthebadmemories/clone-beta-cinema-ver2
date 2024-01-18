@@ -1,45 +1,89 @@
-<h1>Post</h1>
+<h1>Phim</h1>
 <section>
-    <div class="example-button-row" style="margin-bottom: 10px;">
-      <button (click)="create()" mat-raised-button color="primary">Create</button>
-    </div>
-  </section>
-    <div class="body">
-      <form>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="">Id</th>
-                    <th>Title</th>
-                    <th>Date Post</th>
-                    <th>TopicId</th>
-                    <th>AuthorId</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <ng-container *ngFor="let item of post ">
-                    <tr>
-                      <td>{{item.maPhim}}</td>
-                      <td>{{item.tenPhim}}</td>
-                      <td>{{item.ngayBatDau}}</td>
-                      <td>{{item.ngayKetThuc}}</td>
-                      <td>{{item.moTa}}</td>
-                      <td>
-                        <button (click)="edit(item)" mat-raised-button color="primary">Edit</button>
-                        <button (click)="deletePost(item.maPhim ? item.maPhim : 0)" mat-raised-button color="accent" style="margin-left: 14px;">Delete</button></td>
-                    </tr>
-                  </ng-container>
-                </tbody>
-              </table>
-            </div>
-          </div>
+  <div style="display: flex; align-items: center; justify-content: center;">
+  <mat-form-field>
+    <mat-label>Rạp</mat-label>
+    <mat-select [(ngModel)]="maRap">
+      <mat-option *ngFor="let data of raps" [value]="data.maRap">
+        {{ data.tenRap }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="margin-left: 10px;">
+    <mat-label>Trạng Thái</mat-label>
+    <mat-select [(ngModel)]="trangThai" name="trangThai">
+      <mat-option value="true">Hoạt động</mat-option>
+      <mat-option value="false">Đã Tắt</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="margin-left: 10px;">
+    <mat-label>Tên Phim</mat-label>
+    <input matInput [(ngModel)]="tenPhim" name="tenPhim" />
+  </mat-form-field>
+  <mat-form-field style="margin-left: 10px;">
+    <mat-label>Đạo Diễn</mat-label>
+    <input matInput [(ngModel)]="daodien" name="daodien" />
+  </mat-form-field>
+  <mat-form-field style="margin-left: 10px;">
+    <mat-label>Hãng Phim</mat-label>
+    <input matInput [(ngModel)]="hangPhim" name="hangPhim" />
+  </mat-form-field>
+  <mat-form-field style="margin-left: 10px;">
+    <mat-label>Quốc Gia</mat-label>
+    <input matInput [(ngModel)]="quocGia" name="quocGia" />
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary" style="margin-left: 10px; margin-bottom: 22px" (click)="search()">Tìm kiếm</button>
+    <button mat-raised-button color="primary" style="margin-left: 10px; margin-bottom: 22px" (click)="clearInputs()">Xóa dữ liệu</button>
+  </div>
+  </div>
+  <div class="example-button-row" style="margin-bottom: 10px;">
+  </div>
+</section>
+<div class="body">
+  <button style="margin-bottom: 10px;" (click)="create()" mat-raised-button color="primary">Tạo mới</button>
+  <button style="margin-left: 10px; margin-bottom: 10px;" (click)="capNhatGia()" mat-raised-button color="primary">Cập nhật giá</button>
+  <form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="">Tên phim</th>
+                <th>Ảnh Phim</th>
+                <th>Giá</th>
+                <!-- <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th> -->
+                <th>Mô tả</th>
+                <th>Trạng thái</th>
+                <th style="width: 261px;">Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of post ">
+                <tr>
+                  <td>{{item.tenPhim}}</td>
+                  <td style="width: 227px; height: 360px;"><img src="{{item.anhPhim}}" alt=""></td>
+                  <td>{{item.gia | currency:'VND':'symbol':'1.0-0'}}</td>
+                  <!-- <td>{{item.ngayBatDau}}</td>
+                      <td>{{item.ngayKetThuc}}</td> -->
+                  <td>{{item.moTa}}</td>
+                  <td style="width: 150px;" [style.color]="item.trangThai ? 'green' : 'red'"> {{ item.trangThai ? 'Hoạt động' : 'Đã Tắt' }}</td>
+                  <td>
+                    <button (click)="edit(item)" mat-raised-button color="primary">Chỉnh sửa</button>
+                    <button (click)="deletePost(item.maPhim ? item.maPhim : 0)" mat-raised-button color="accent"
+                      style="margin-left: 14px;">Xoá</button>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
         </div>
-      </form>
+      </div>
     </div>
+  </form>
+</div>
 <div>
-    
+
 </div>

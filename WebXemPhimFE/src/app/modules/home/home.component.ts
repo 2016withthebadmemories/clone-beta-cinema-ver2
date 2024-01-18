@@ -5,9 +5,10 @@ import { Component } from '@angular/core';
 import { topicDto } from '../admin/modules/topic/list-topic/list-topic.component';
 import { PhimDto } from './modules/post/post.component';
 import { CommentService } from 'src/services/comment.service';
-import { BinhLuanDto } from '../admin/modules/comment/list-comment/list-comment.component';
+import { BinhLuanDto, GetBinhLuanDto } from '../admin/modules/comment/list-comment/list-comment.component';
 import { Router } from '@angular/router';
 import { RapService } from 'src/services/rap.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -17,18 +18,18 @@ import { RapService } from 'src/services/rap.service';
 export class HomeComponent {
   public topic: topicDto[] = [];
   public post: PhimDto[] = [];
-  public comment: BinhLuanDto[] = [];
+  public comment: GetBinhLuanDto[] = [];
   public raps: RapDto[] = [];
   public searchText = "";
   public selectedRap: string = "";
   public isDropdownOpen: boolean = false;
-  public isShowBtnLgLo: boolean = true;
   constructor(
     private postService: PostService,
     private topicService: TopicService,
     private commentService: CommentService,
     private router: Router,
-    private rapService: RapService
+    private rapService: RapService,
+    public authService: AuthService
   ) { 
   }
   
@@ -36,10 +37,7 @@ export class HomeComponent {
     const token = localStorage.getItem("token");
     const email = localStorage.getItem("email");
     const maTaiKhoan = localStorage.getItem("maTaiKhoan");
-    if (token) {
-      this.isShowBtnLgLo = false;
-    }
-    console.log("🚀 ~ file: home.component.ts:41 ~ HomeComponent ~ ngOnInit ~ isShowBtnLgLo:", this.isShowBtnLgLo);
+    this.authService.setIsLoginSuccess(!!token);
     this.getAllPost();
     this.getAllTopic();
     this.getAllRap();
@@ -100,7 +98,7 @@ export class HomeComponent {
 
   logOut() {
     localStorage.clear();
-    this.isShowBtnLgLo = true;
+    this.authService.isLoginSuccess.next(false);
   }
   
 }

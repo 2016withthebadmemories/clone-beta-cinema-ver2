@@ -2,6 +2,8 @@ import { TopicService } from './../../../../../../services/topic.service';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateEditTopicComponent } from '../create-edit-topic/create-edit-topic.component';
+import { BannerDto, BannerService } from 'src/services/banner.service';
+import { XacNhanComponent } from '../../xac-nhan/xac-nhan.component';
 
 @Component({
   selector: 'app-list-topic',
@@ -9,36 +11,49 @@ import { CreateEditTopicComponent } from '../create-edit-topic/create-edit-topic
   styleUrls: ['./list-topic.component.css'],
 })
 export class ListTopicComponent {
-  public topic: topicDto[] = [];
-  constructor(private topicService: TopicService, private dialog: MatDialog) {}
+  public banner: BannerDto[] = [];
+  constructor(private bannerService: BannerService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.getAllTopic();
+    this.getAllBanner();
   }
-  getAllTopic() {
-    this.topicService.getAllTopic().subscribe((rs) => {
-      this.topic = rs;
+  getAllBanner() {
+    this.bannerService.getAllBanner().subscribe((rs) => {
+      this.banner = rs;
     });
   }
   create() {
     const dialogRef = this.dialog.open(CreateEditTopicComponent, {});
     dialogRef.afterClosed().subscribe((rs) => {
-      this.getAllTopic();
+      this.getAllBanner();
     });
   }
-  edit(item: topicDto) {
+  edit(item: BannerDto) {
     const dialogRef = this.dialog.open(CreateEditTopicComponent, {
       data: {
-        topic: JSON.parse(JSON.stringify(item)),
+        banner: JSON.parse(JSON.stringify(item)),
       },
     });
     dialogRef.afterClosed().subscribe((rs) => {
-      this.getAllTopic();
+      this.getAllBanner();
     });
   }
+
   deleteTopic(id: number) {
-    this.topicService.delete(id).subscribe((rs) => {
-      this.getAllTopic();
+    this.openDeleteConfirmationDialog(id);
+  }
+  
+  openDeleteConfirmationDialog(id: number): void {
+    const dialogRef = this.dialog.open(XacNhanComponent, {
+      width: '300px', // You can adjust the width as needed
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.bannerService.delete(id).subscribe((rs) => {
+          this.getAllBanner();
+        });
+      }
     });
   }
 }

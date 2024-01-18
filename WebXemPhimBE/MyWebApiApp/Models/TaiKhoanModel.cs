@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
 namespace MyWebApiApp.Models
 {
@@ -17,5 +18,6 @@ namespace MyWebApiApp.Models
         public DateTime NgaySinh { get; set; }
 
         public bool LoaiTaiKhoan { get; set; }
+        public IFormFile Anh { get; set; }
     }
 }

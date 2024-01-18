@@ -14,6 +14,7 @@ export class LoginComponent {
     email: new FormControl('', Validators.required),
     matKhau: new FormControl('', Validators.required)
   })
+  public hide = true;
   constructor(private userService: UserService, private authService:AuthService, private router: Router) {
     
   }
@@ -33,7 +34,9 @@ export class LoginComponent {
       this.userService.login(data).subscribe(rs => {
         if (rs.success) {
           this.authService.setToken(rs.data);
-          this.router.navigateByUrl("/admin")
+          this.router.navigateByUrl("/admin/thong-ke")
+        } else {
+          this.hide = false;
         }
       })
     }

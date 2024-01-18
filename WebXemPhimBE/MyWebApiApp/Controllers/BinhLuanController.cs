@@ -22,10 +22,35 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<BinhLuan>> GetAllBinhLuan()
+        public async Task<List<BinhLuanModel>> GetBinhLuanOfPhim()
         {
-            return await _dbContext.BinhLuans.ToListAsync();
+            return await _dbContext.BinhLuans
+                .Join(_dbContext.TaiKhoans,
+                        binhLuan => binhLuan.MaTaiKhoan, nguoiBinhLuan =>
+                        nguoiBinhLuan.MaTaiKhoan, (binhLuan, nguoiBinhLuan) => new
+                        {
+                            BinhLuan = binhLuan,
+                            ThongTinNguoiDung = nguoiBinhLuan
+                        })
+                .Join(_dbContext.Phims,
+                        joined => joined.BinhLuan.MaPhim, phim => phim.MaPhim, (joined, phim) => new
+                        {
+                            joined.BinhLuan,
+                            joined.ThongTinNguoiDung,
+                            phim.TenPhim
+                        })
+                .Select(result => new BinhLuanModel
+                {
+                    MaBinhLuan = result.BinhLuan.MaBinhLuan,
+                    Email = result.ThongTinNguoiDung.Email,
+                    AnhDaiDien = result.ThongTinNguoiDung.AnhDaiDien,
+                    NoiDung = result.BinhLuan.NoiDung,
+                    NgayBinhLuan = result.BinhLuan.NgayBinhLuan,
+                    TenPhim = result.TenPhim
+                })
+                .ToListAsync();
         }
+
 
         [HttpGet("{id}")]
         public async Task<BinhLuan> GetBinhLuanById(int id)

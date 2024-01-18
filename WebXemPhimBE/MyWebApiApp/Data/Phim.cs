@@ -27,6 +27,10 @@ namespace MyWebApiApp.Data
 
         public DateTime NgayKetThuc {  get; set; }
 
+        public DateTime NgayTao { get; set; }
+
+        public string LinkTrailer { get; set; }
+
         public string QuocGia { get; set; }
 
         public string HangPhim { get; set; }

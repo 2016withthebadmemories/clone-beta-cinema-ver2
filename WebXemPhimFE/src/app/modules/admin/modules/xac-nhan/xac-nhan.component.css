@@ -1,0 +1,20 @@
+/* delete-confirmation-dialog.component.scss */
+
+h2 {
+  color: #ff4081; /* Set your preferred color for the title */
+  margin-bottom: 16px; /* Add some margin below the title */
+}
+
+mat-dialog-content {
+  margin-bottom: 24px; /* Add some margin below the content */
+}
+
+mat-dialog-actions {
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+button {
+  margin-left: 8px; /* Add some space between the buttons */
+}
+
+/* You can add more styles as needed */

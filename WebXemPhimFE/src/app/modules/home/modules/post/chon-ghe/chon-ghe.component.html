@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="header">
+    <div class="title">
+      <div style="margin-top: 10px;">
+        <span class="custom-font" style="font-size: 24px; margin-top: 25px;">Bạn đang chọn vé cho phim: </span>
+        <span class="custom-font" style="font-size: 24px; margin-top: 25px; color: #337ab7;">
+            {{phims.tenPhim}}</span>
+            <span class="custom-font" style="font-size: 24px; margin-top: 25px;"> tại rạp: </span>
+        <span class="custom-font" style="font-size: 24px; margin-top: 25px; color: #337ab7;">
+            {{phims.tenRap}}</span>
+    </div>
+    </div>
+    <!-- <div class="close-button" (click)="close()">
+      <span>x</span>
+    </div> -->
+  </div>
+  <div class="body">
+    <div class="list-ghe">
+      <img
+        style="height: 74px"
+        src="https://localhost:5001/images/ic-screen.png"
+        alt=""
+      />
+      <ng-container *ngFor="let item of ghes">
+        <div class="chon-ghe" (click)="onClickGhe(item)">
+          <img
+            class="ghe-img"
+            [src]="isGheDangChon(item) ? (item.tinhTrangGhe ? this.gheVipDangChon : this.gheDangChon) : this.getGheImageUrl(item)"
+            alt=""
+          />
+          <span>{{ item.tenGhe }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    
+  </div>
+
+  <div class="chu-thich">
+    <span>
+      Ghế thường: 
+      <span style="color: #337ab7;">{{phims.gia | currency:'VND':'symbol':'1.0-0'}}</span>
+      <img class="ghe-img" [src]="gheChuaDat" alt="">
+    </span>
+    <span>
+      Ghế VIP: 
+      <span style="color: #337ab7;">{{phims.gia * 1.25 | currency:'VND':'symbol':'1.0-0'}}</span>
+      <img class="ghe-img" [src]="gheVip" alt="">
+    </span>
+    <span>
+        Ghế đã đặt: 
+        <img class="ghe-img" [src]="gheDaDat" alt="">
+    </span>
+    <span>
+        Ghế đang chọn: 
+        <img class="ghe-img" [src]="gheDangChon" alt="">
+    </span>
+</div>
+  <div class="foodter">
+    <div style="margin-top: 12px;" *ngIf="!(listGheSelected.length > 0) && !isHetGhe">
+      <span class="custom-font" style="font-size: 24px; margin-top: 25px;">Vui lòng chọn ghế</span>
+    </div> 
+    <div style="margin-top: 10px;" *ngIf="isHetGhe">
+      <span class="custom-font" style="font-size: 24px; margin-top: 25px; color: #337ab7;">Phim đã bán hết vé !!!</span>
+    </div> 
+    <div style="margin-top: 10px;" *ngIf="listGheSelected.length > 0">
+      <span class="custom-font" style="font-size: 24px; margin-top: 25px;">Xác nhận thanh toán: </span>
+      <span class="custom-font" style="font-size: 24px; margin-top: 25px; color: #337ab7;">
+          {{listGheSelected.length}} vé</span>
+          <span class="custom-font" style="font-size: 24px; margin-top: 25px;"> với tổng tiền</span>
+      <span class="custom-font" style="font-size: 24px; margin-top: 25px; color: #337ab7;">
+          {{tongTien | currency:'VND':'symbol':'1.0-0' }}</span>
+  </div>
+  <div *ngIf="!isHetGhe && listGheSelected.length > 0">
+    <span  class="custom-font" style="font-size: 20px;" >Thanh toán qua: </span>
+    <img class="img-thanh-toan" (click)="datVePaypal()" src="https://localhost:5001/images/unnamed%20(1).webp" alt="">
+    <img class="img-thanh-toan" (click)="datVe()"src="https://localhost:5001/images/unnamed.webp" alt="">
+  
+  </div>
+  </div>
+</div>

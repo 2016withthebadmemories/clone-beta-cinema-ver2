@@ -1,4 +1,4 @@
-<h1> Comment</h1>
+<h1>Bình luận</h1>
 <section>
     <div class="example-button-row">
     </div>
@@ -11,22 +11,22 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th class="">Id</th>
-                    <th>Content</th>
-                    <th>Date Post</th>
-                    <th>Name</th>
-                    <th>PostId</th>
-                    <th>Action</th>
+                    <th class="">Ảnh đại diện</th>
+                    <th>Email</th>
+                    <th>Nôi dung bình luận</th>
+                    <th>Tên phim</th>
+                    <th>Ngày bình luận</th>
+                    <th>Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
                   <ng-container *ngFor="let item of comment">
                     <tr>
-                      <td>{{item.maBinhLuan}}</td>
+                      <td><img src="{{item.anhDaiDien}}" alt=""></td>
+                      <td>{{item.email}}</td>
                       <td>{{item.noiDung}}</td>
-                      <!-- <td>{{item.datePosted}}</td>
-                      <td>{{item.name}}</td>
-                      <td>{{item.postID}}</td> -->
+                      <td>{{item.tenPhim}}</td>
+                      <td>{{item.ngayBinhLuan | date : 'dd/MM/yyy'}}</td>
                       <td>
                         <button (click)="deleteComment(item.maBinhLuan ? item.maBinhLuan : 0)" mat-raised-button color="accent">Delete</button></td>
                     </tr>

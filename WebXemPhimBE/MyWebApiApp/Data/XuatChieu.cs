@@ -19,5 +19,9 @@ namespace MyWebApiApp.Data
         public int MaPhim { get; set; }
         [ForeignKey(nameof(MaPhim))]
         public Phim Phim { get; set; }
+
+        public int MaPhong { get; set; }
+        [ForeignKey(nameof(MaPhong))]
+        public Phong Phong { get; set; }
     }
 }

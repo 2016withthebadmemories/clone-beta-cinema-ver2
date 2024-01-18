@@ -1,0 +1,43 @@
+<h1>Tài khoản</h1>
+<section>
+    <div class="example-button-row">
+      <button (click)="create()" mat-raised-button color="primary">Tạo mới</button>
+    </div>
+  </section>
+    <div class="body">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Ảnh đại diện</th>
+                    <th>Email</th>
+                    <th>Mật khẩu</th>
+                    <th>Số điện thoại</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let item of user">
+                    <tr>
+                      <td><img src="{{item.anhDaiDien}}" alt=""></td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.matKhau}}</td>
+                      <td>{{item.soDienThoai}}</td>
+                      <td>
+                        <button (click)="edit(item)" mat-raised-button color="primary">Chỉnh sửa</button>
+                        <button (click)="delete(item.maTaiKhoan ? item.maTaiKhoan : 0)"  mat-raised-button color="accent">Xoá</button></td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+<div>
+    
+</div>

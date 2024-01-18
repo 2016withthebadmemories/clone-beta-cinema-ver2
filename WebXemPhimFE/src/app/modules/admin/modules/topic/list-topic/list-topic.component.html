@@ -1,7 +1,7 @@
-<h1> Topic</h1>
+<h1>Banner</h1>
 <section>
     <div class="example-button-row">
-      <button (click)="create()" mat-raised-button color="primary">Create</button>
+      <button (click)="create()" mat-raised-button color="primary">Tạo mới</button>
     </div>
   </section>
     <div class="body">
@@ -12,19 +12,17 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th class="">Id</th>
-                    <th>Name</th>
-                    <th>Action</th>
+                    <th>Ảnh banner</th>
+                    <th>Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <ng-container *ngFor="let item of topic">
+                  <ng-container *ngFor="let item of banner">
                     <tr>
-                      <td>{{item.id}}</td>
-                      <td>{{item.name}}</td>
+                      <td><img src="{{item.ten}}" alt=""></td>
                       <td>
-                        <button (click)="edit(item)" mat-raised-button color="primary">Edit</button>
-                        <button (click)="deleteTopic(item.id ? item.id : 0)"  mat-raised-button color="accent">Delete</button></td>
+                        <button (click)="edit(item)" mat-raised-button color="primary">Chỉnh sửa</button>
+                        <button (click)="deleteTopic(item.maBanner ? item.maBanner : 0)"  mat-raised-button color="accent">Xoá</button></td>
                     </tr>
                   </ng-container>
                 </tbody>

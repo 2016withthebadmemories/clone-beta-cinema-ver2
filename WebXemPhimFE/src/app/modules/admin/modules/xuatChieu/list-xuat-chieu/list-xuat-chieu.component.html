@@ -1,0 +1,45 @@
+<h1>Xuất Chiếu</h1>
+<section>
+    <div class="example-button-row">
+      <button (click)="create()" mat-raised-button color="primary">Tạo mới</button>
+    </div>
+  </section>
+    <div class="body">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Tên Phim</th>
+                    <th>Rạp</th>
+                    <th>Phòng</th>
+                    <th>Ngày chiếu</th>
+                    <th>Giờ chiếu</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let item of xc">
+                    <tr>
+                      <td>{{item.tenPhim}}</td>
+                      <td>{{item.tenRap}}</td>
+                      <td>{{item.tenPhong}}</td>
+                      <td>{{item.ngayChieu | date : 'dd/MM/yyy' }}</td>
+                      <td>{{item.gio}}:{{item.phut}}</td>
+                      <td>
+                        <button (click)="edit(item)" mat-raised-button color="primary">Chỉnh sửa</button>
+                        <button (click)="delete(item.maXuatChieu ? item.maXuatChieu : 0)"  mat-raised-button color="accent">Xoá</button></td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+<div>
+    
+</div>

@@ -12,6 +12,8 @@ namespace MyWebApiApp.Models
 
         public int MaTaiKhoan { get; set; }
 
+        public string TenPhim{ get; set; }
+
         public string Email { get; set; }
         
         public string AnhDaiDien {  get; set; }

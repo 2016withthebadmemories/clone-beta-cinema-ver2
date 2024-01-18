@@ -1,0 +1,43 @@
+<h1>Phòng</h1>
+<section>
+    <div class="example-button-row">
+      <button (click)="create()" mat-raised-button color="primary">Tạo mới</button>
+    </div>
+  </section>
+    <div class="body">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Tên phòng</th>
+                    <th>Trạng thái</th>
+                    <th>Ghi chú</th>
+                    <th>Số lượng ghế</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let item of phong">
+                    <tr>
+                      <td>{{item.tenPhong}}</td>
+                      <td [style.color]="item.trangThai ? 'green' : 'red'"> {{ item.trangThai ? 'Hoạt động' : 'Đã Tắt' }}</td>
+                      <td>{{item.ghiChu}}</td>
+                      <td>{{item.soLuongGhe}}</td>
+                      <td>
+                        <button (click)="edit(item)" mat-raised-button color="primary">Chỉnh sửa</button>
+                        <button (click)="delete(item.maPhong ? item.maPhong : 0)"  mat-raised-button color="accent">Xoá</button></td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+<div>
+    
+</div>

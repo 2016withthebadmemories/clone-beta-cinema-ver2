@@ -12,6 +12,7 @@ export class RegisterComponent {
   email: string = '';
   matKhau: string = '';
   soDienThoai: string = '';
+  selectedFile!: File;
 
   constructor(private userService: UserService, private authService:AuthService, private router: Router) {
     
@@ -20,14 +21,19 @@ export class RegisterComponent {
     
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    }
+  
   submit(event: any) {
     event.preventDefault();
-    const data = {
-      email: this.email,
-      matKhau: this.matKhau,
-      soDienThoai: this.soDienThoai
-    }
-      this.userService.register(data).subscribe(rs => {
+    const formData = new FormData();
+    formData.append('email',this.email);
+    formData.append('matKhau', this.matKhau);
+    formData.append('soDienThoai', this.soDienThoai);
+    formData.append('LoaiTaiKhoan', 'true');
+    formData.append('anh', this.selectedFile, this.selectedFile.name);
+      this.userService.register(formData).subscribe(rs => {
         this.router.navigateByUrl("/home/login")
       })
   }

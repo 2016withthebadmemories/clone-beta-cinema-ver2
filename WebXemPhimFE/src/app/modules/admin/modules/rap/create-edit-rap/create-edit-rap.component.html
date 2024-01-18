@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>{{this.rap.maRap ? 'Cập nhật' :'Tạo mới'}}</h2>
+<head>
+    <script src="https://cdn.tiny.cloud/1/dqwo69om78lgg65iip79iqjovj7vklmwua8boq08v557npwh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<mat-dialog-content class="mat-typography">
+    <form style="width: 100%;">
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Tên rạp</mat-label>
+            <input matInput name="tenRap" [(ngModel)]="rap.tenRap" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Địa chỉ</mat-label>
+            <input matInput name="diaChi" [(ngModel)]="rap.diaChi" >
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Huỷ</button>
+    <button mat-button (click)="create()">{{this.rap.maRap ? 'Cập nhật' :'Tạo mới'}}</button>
+</mat-dialog-actions>

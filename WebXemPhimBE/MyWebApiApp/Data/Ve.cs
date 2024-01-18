@@ -13,8 +13,8 @@ namespace MyWebApiApp.Data
         [ForeignKey(nameof(MaDatVe))]
         public DatVe DatVe { get; set; }
 
-        public int MaXuaChieu { get; set; }
-        [ForeignKey(nameof(MaXuaChieu))]
+        public int MaXuatChieu { get; set; }
+        [ForeignKey(nameof(MaXuatChieu))]
         public XuatChieu XuatChieu { get; set; }
 
         public int MaGhe { get; set; }

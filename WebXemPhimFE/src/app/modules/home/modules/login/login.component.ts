@@ -32,6 +32,7 @@ export class LoginComponent {
           maTaiKhoan: rs.maTaiKhoan
         }
         if (rs.success) {
+          this.authService.setIsLoginSuccess(true);
           this.authService.setToken(rs.data);
           this.authService.setInfo(userInfo);
           this.router.navigateByUrl("/home")

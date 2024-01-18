@@ -1,0 +1,51 @@
+<h1>Ghế</h1>
+<section>
+    <div class="example-button-row">
+      <button (click)="create()" mat-raised-button color="primary">Tạo mới</button>
+    </div>
+    <div class="room-dropdown-container">
+      <select id="roomDropdown" [(ngModel)]="selectedRoom" (change)="onRoomSelected()" class="dropdown-select">
+        <option [ngValue]="null" disabled>Chọn phòng</option>
+        <option *ngFor="let room of rooms" [ngValue]="room.maPhong">{{ room.tenPhong }}</option>
+      </select>
+    </div>    
+  </section>
+    <div class="body">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Tên ghế</th>
+                    <th>Trạng thái</th>
+                    <!-- <th>Cột</th>
+                    <th>Hàng</th> -->
+                    <th>Tên phòng</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let item of ghe">
+                    <tr>
+                      <td>{{item.tenGhe}}</td>
+                      <td [style.color]="item.tinhTrangGhe ? 'green' : 'red'"> {{ item.tinhTrangGhe ? 'Vip' : 'Thường' }}</td>
+                      <!-- <td>{{item.cot}}</td>
+                      <td>{{item.hang}}</td> -->
+                      <td>{{item.tenPhong}}</td>
+                      <td>
+                        <button (click)="edit(item)" mat-raised-button color="primary">Chỉnh sửa</button>
+                        <button (click)="delete(item.maGhe ? item.maGhe : 0)"  mat-raised-button color="accent">Xoá</button></td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+<div>
+    
+</div>

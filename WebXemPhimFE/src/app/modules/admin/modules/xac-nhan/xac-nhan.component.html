@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>Bạn có chắc chắn xoá?</h2>
+<mat-dialog-content>Việc này không thể hoàn tác</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Huỷ</button>
+  <button mat-button color="warn" [mat-dialog-close]="true">Xác nhận</button>
+</mat-dialog-actions>

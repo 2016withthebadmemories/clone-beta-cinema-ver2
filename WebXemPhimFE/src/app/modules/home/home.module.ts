@@ -11,15 +11,21 @@ import { FormsModule } from '@angular/forms';
 import { register } from 'swiper/element/bundle';
 import { LoginComponent } from './modules/login/login.component';
 import { RegisterComponent } from './modules/register/register.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UserComponent } from './modules/user/user.component';
+import { RapComponent } from './modules/rap/rap.component';
+import { GiaVeComponent } from './modules/gia-ve/gia-ve.component';
+import { KhuyenMaiComponent } from './modules/khuyen-mai/khuyen-mai.component';
 // register Swiper custom elements
 register();
 
 @NgModule({
-  declarations: [HomeComponent, HomeIndexComponent, TopicComponent, SearchComponent, LoginComponent, RegisterComponent],
+  declarations: [HomeComponent, HomeIndexComponent, TopicComponent, SearchComponent, LoginComponent, RegisterComponent, UserComponent, RapComponent, GiaVeComponent, KhuyenMaiComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

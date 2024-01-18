@@ -1,0 +1,70 @@
+<div class="container-fluid" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6" >
+            <div class="user-container">
+                <div class="user-avatar">
+                    <img [src]="user.anhDaiDien" alt="User Avatar">
+                </div>
+                <div class="user-details">
+                    <h2>{{ user.email }}</h2>
+                    <p>Điện thoại: {{ user.soDienThoai }}</p>
+                    <p>Loại tài khoản: {{ user.loaiTaiKhoan ? 'Admin' : 'Regular User' }}</p>
+                </div>
+                <button class="button-edit-max" (click)="toggleEditForm()">Sửa thông tin</button>
+            </div>
+
+            <div class="edit-user-form" style="margin-bottom: 20px">
+                <form *ngIf="showEditForm" (ngSubmit)="onSubmit()" class="user-form">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="text" [(ngModel)]="editedUser.email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Điện thoại:</label>
+                        <input type="text" [(ngModel)]="editedUser.soDienThoai" name="soDienThoai" required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>Birthday:</label>
+                        <input type="date" [(ngModel)]="editedUser.ngaySinh" name="ngaySinh" required>
+                    </div> -->
+                    <div class="form-group">
+                        <label>Mật khẩu:</label>
+                        <input type="password" [(ngModel)]="editedUser.matKhau" name="matKhau" required>
+                    </div>
+                    <input type="file" (change)="onFileSelected($event)">
+                    <button type="submit" class="update-button">Cập nhật thông tin</button>
+                </form>
+            </div>
+            <div *ngIf="veHistory.length > 0" class="custom-font" style="font-size: 36px; margin-bottom: 28px;">
+                <span >Lịch sử thanh toán: </span>
+            </div>
+            <div *ngFor="let ve of veHistory" style="max-height: 100vh;">
+                <div class="ve-history-item">
+                    <div class="ve-info">
+                        <p><strong>Mã Đặt Vé:</strong> {{ ve.maDatVe }}</p>
+                        <p><strong>Ngày Đặt Vé:</strong> {{ ve.ngayDatVe | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+                        <p><strong>Số Lượng Vé:</strong> {{ ve.soLuong }}</p>
+                        <p><strong>Tổng Giá:</strong> {{ ve.tongGia | currency:'VND':'symbol':'1.0-0' }}</p>
+                    </div>
+                    <div class="xuat-chieu-info">
+                        <p><strong>Xuất Chiếu:</strong></p>
+                        <p>{{ ve.xuatChieu.tenRap }} - {{ ve.xuatChieu.tenPhong }}</p>
+                        <p>{{ ve.xuatChieu.gio }}:{{ ve.xuatChieu.phut }}</p>
+                        <p><strong>Phim:</strong> {{ ve.xuatChieu.tenPhim }}</p>
+                    </div>
+                    <div class="ghe-info">
+                        <p><strong>Ghế Đã Chọn:</strong></p>
+                        <ul>
+                            <li *ngFor="let ghe of ve.ghes">{{ ghe.tenGhe }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+</div>

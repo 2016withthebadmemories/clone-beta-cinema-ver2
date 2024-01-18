@@ -7,11 +7,11 @@
       <div class="row">
         <h2>Đăng nhập</h2>
         <form (ngSubmit)="submit($event)">
-          <div>
+          <div style="margin-top: 15px;">
             <label for="username">Tài khoản:</label>
             <input type="text" class="form-control" id="username" name="username" [(ngModel)]="email" required>
           </div>
-          <div>
+          <div style="margin-top: 15px;">
             <label for="password">Mật khẩu:</label>
             <input type="password" class="form-control" id="password" name="password" [(ngModel)]="matKhau" required>
           </div>

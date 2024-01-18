@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center py-2 px-3 sticky-top chieuCao" style="background-color: whitesmoke;">
     <div class="d-flex align-items-center margin-2-ben">
-      <a class="site-logo pointer-hover" routerLink="/home"><img alt="" style="height: 55px;" src="https://betacinemas.vn/Assets/Common/logo/logo.png" class="pointer-hover"></a>
+      <a class="site-logo pointer-hover" routerLink="/home"><img alt="" style="height: 55px;" src="https://localhost:5001/images/logo.png" class="pointer-hover"></a>
       <div class="select-menu margin-drop">
         <div class="select-btn" (click)="toggleDropdown()">
           <span style="font-family: 'Oswald'; font-size: 18px;">{{ selectedRap ? selectedRap : "Lựa chọn rạp" }}</span>
@@ -13,15 +13,16 @@
         </ul>
       </div>
       <div id="menu" style="font-family: 'Oswald'; font-size: 18px;">
-        <ul>
-          <li><a href="#">Lịch Chiếu Theo Rạp</a></li>
-          <li><a href="#">Phim</a></li>
-          <li><a href="#">Rạp</a>
-          <li><a href="#">Giá Vé</a>
-          <li><a href="#">Khuyến Mại</a>
-          <li *ngIf="isShowBtnLgLo"><a routerLink="/home/register">Đăng Ký</a>
-          <li *ngIf="isShowBtnLgLo"><a routerLink="/home/login">Đăng Nhập</a>
-          <li *ngIf="!isShowBtnLgLo" (click)="logOut()"><a>Đăng Xuất</a>
+        <ul style="width: 710px;">
+          <li><a routerLink="/home">Lịch Chiếu Theo Rạp</a></li>
+          <li><a routerLink="/home">Phim</a></li>
+          <li><a routerLink="/home/rap">Rạp</a>
+          <li><a routerLink="/home/ve">Giá Vé</a>
+          <li><a routerLink="/home/khuyen-mai">Khuyến Mại</a>
+          <li class="cursor" *ngIf="!(authService.isLoginSuccess | async)"><a routerLink="/home/register">Đăng Ký</a>
+          <li class="cursor" *ngIf="!(authService.isLoginSuccess | async)"><a routerLink="/home/login">Đăng Nhập</a>
+          <li class="cursor" *ngIf="authService.isLoginSuccess | async"><a routerLink="/home/user">Tài Khoản</a>
+          <li class="cursor" *ngIf="authService.isLoginSuccess | async" (click)="logOut()"><a>Đăng Xuất</a>
         </ul>
       </div>
     </div>
@@ -33,7 +34,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
   </head>
-  <body style="margin-top: 69px;">
+  <div style="margin-top: 69px;">
     <div>
       <router-outlet [selectedRaps]="selectedRap"></router-outlet>
     </div>
@@ -43,15 +44,15 @@
           <div class="col-md-6">
           <h5 style="font-family: 'Oswald'; font-size: 16px;" >Liên hệ với chúng tôi qua: </h5>
             <p style="font-family: 'Oswald'; font-size: 16px;">Số điện thoại: 0369368521</p>
-            <p style="font-family: 'Oswald'; font-size: 16px;">Email: NDTBETAgmail.com</p>
+            <p style="font-family: 'Oswald'; font-size: 16px;">Email: betacinema@gmail.com</p>
           </div>
           <div class="col-md-6">
             <h5 style="font-family: 'Oswald'; font-size: 16px;">Theo dõi chúng tôi trên: </h5>
-            <a href="https://www.facebook.com"><i class="fab fa-facebook fa-2x mx-3"></i></a>
-            <a href="https://www.instagram.com"><i class="fab fa-instagram fa-2x mx-3"></i></a>
-            <a href="https://www.youtube.com"><i class="fab fa-youtube fa-2x mx-3"></i></a>
+            <a href="https://www.facebook.com/betacinemas/?locale=vi_VN"><i class="fab fa-facebook fa-2x mx-3"></i></a>
+            <a href="https://www.instagram.com/betacinemaofficial/"><i class="fab fa-instagram fa-2x mx-3"></i></a>
+            <a href="https://www.youtube.com/@betamediaofficialchannel"><i class="fab fa-youtube fa-2x mx-3"></i></a>
           </div>
         </div>
       </div>
     </footer>
-  </body>
+  </div>

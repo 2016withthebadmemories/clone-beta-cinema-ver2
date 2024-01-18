@@ -22,6 +22,42 @@ const routes: Routes = [
       {
         path: "post",
         loadChildren: () => import("./modules/post/post.module").then(m => m.PostModule)
+      },
+      {
+        path: "user",
+        loadChildren: () => import("./modules/user/user.module").then(m => m.UserModule)
+      },
+      {
+        path: "rap",
+        loadChildren: () => import("./modules/rap/rap.module").then(m => m.RapModule)
+      },
+      {
+        path: "ghe",
+        loadChildren: () => import("./modules/ghe/ghe.module").then(m => m.GheModule)
+      },
+      {
+        path: "phong",
+        loadChildren: () => import("./modules/phong/phong.module").then(m => m.PhongModule)
+      },
+      {
+        path: "xuatChieu",
+        loadChildren: () => import("./modules/xuatChieu/xuatChieu.module").then(m => m.XuatChieuModule)
+      },
+      {
+        path: "ve",
+        loadChildren: () => import("./modules/list-ve/ve.module").then(m => m.VeModule)
+      },
+      {
+        path: "dat-ve",
+        loadChildren: () => import("./modules/dat-ve/datVe.module").then(m => m.DatVeModule)
+      },
+      {
+        path: "thong-ke",
+        loadChildren: () => import("./modules/thong-ke/thong-ke.module").then(m => m.ThongKeModule)
+      },
+      {
+        path: "xac-nhan",
+        loadChildren: () => import("./modules/xac-nhan/xac-nhan.module").then(m => m.XacNhanModule)
       }
     ]
   },

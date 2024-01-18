@@ -1,0 +1,100 @@
+.container {
+    border-radius: 4px;
+    max-height: 80vh;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    padding: 27px;
+    min-width: 400px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 800;
+    color: #202020;
+    margin-bottom: 20px;
+}
+
+.close-button{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+.close-button:hover{
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: auto;
+}
+
+.foodter{
+    border-top: 1px solid #ccc;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.confirm-button{
+    width: fit-content;
+    border-radius: 4px;
+    background-color: #337ab7;
+    border: 1px solid #ccc;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.list-ghe{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    width: 660px; 
+    /* margin-left: 15px; */
+}
+
+.chon-ghe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ghe-img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.chu-thich {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.img-thanh-toan {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-left: 5px;
+    border-radius: 5px;
+}

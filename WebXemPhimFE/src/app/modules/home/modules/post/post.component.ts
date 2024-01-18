@@ -1,9 +1,13 @@
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { PostService } from './../../../../../services/post.service';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { scrollToTop } from 'helper';
 import { BinhLuanDto } from 'src/app/modules/admin/modules/comment/list-comment/list-comment.component';
 import { CommentService } from 'src/services/comment.service';
 import { XuatChieuService, XuatChieuDto, XuatChieuRequest } from 'src/services/xuatChieu.service';
+import { ChonGheComponent } from './chon-ghe/chon-ghe.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-post',
@@ -18,21 +22,27 @@ export class PostComponent {
   public comment: BinhLuanDto[] = [];
   public xuatChieus: XuatChieuDto[] = [];
   public ngayTiepTheo: any[] = []; 
+  public safeUrl: SafeResourceUrl;
   selectedItem: any = null;
+  
   constructor(
     private postService: PostService,
     private activatedRoute: ActivatedRoute,
     private commentService: CommentService,
-    private xuatChieuService: XuatChieuService
+    private xuatChieuService: XuatChieuService,
+    private dialog: MatDialog,
+    private sanitizer: DomSanitizer
   ) { }
   
   ngOnInit() {
+    scrollToTop();
     this.activatedRoute.params.subscribe(s => {
       this.getNgayTiepTheo();
       this.id = s['id']
       this.getAllComment(this.id);
       this.postService.getPostById(this.id).subscribe(x => {
         this.phim = x
+        this.safeUrl= this.sanitizer.bypassSecurityTrustResourceUrl(x.linkTrailer);
       })
     })
   }
@@ -44,6 +54,16 @@ export class PostComponent {
       this.selectedItem = item;
       this.getXuatChieuByPhimId(this.selectedItem.getDate(), this.selectedItem.getMonth()+1 , this.selectedItem.getFullYear(), this.id);
     }
+  }
+
+  chonGhe(item: PhimDto, xc: XuatChieuDto) {
+    const dialogRef = this.dialog.open(ChonGheComponent, {
+      data: {
+        phim: JSON.parse(JSON.stringify(item)),
+        xc:  JSON.parse(JSON.stringify(xc))
+      },
+    });
+    dialogRef.afterClosed().subscribe();
   }
 
   getNgayTiepTheo() {
@@ -81,13 +101,34 @@ export interface PhimDto {
   daodien: string,
   gia: number,
   anhPhim: string;
-  ngayBatDau: string;
-  ngayKetThuc: string;
+  ngayBatDau: string | null;
+  ngayKetThuc: string | null;
+  ngayTao: string;
+  linkTrailer: string;
   quocGia: string;
   hangPhim: string;
   phienBan: string;
   theLoai: string;
   trangThai: boolean;
-  maRap: string;
+  maRap: number;
   thoiLuong: string;
+  tenRap: string;
+  AnhPhimFile: any;
+}
+export interface xuatChieuPhim { 
+  ngayChieu: string,
+  gio: string,
+  phut: string,
+}
+
+export interface xuatChieuCreateForPhim {
+  maPhim: number,
+  maPhong: number,
+  xuatChieus: xuatChieuPhim[];
+}
+
+export interface xuatChieuEditForPhim { 
+  maXuatChieu: number,
+  gio: number,
+  phut: number,
 }

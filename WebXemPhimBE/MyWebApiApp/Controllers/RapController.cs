@@ -24,7 +24,7 @@ namespace MyWebApiApp.Controllers
         [HttpGet]
         public async Task<IEnumerable<Rap>> GetAllRap()
         {
-            return await _dbContext.Raps.ToListAsync();
+            return await _dbContext.Raps.Where(x => x.MaTaiKhoan == null).ToListAsync();
         }
 
         [HttpPost]
@@ -35,7 +35,6 @@ namespace MyWebApiApp.Controllers
                 MaRap = input.MaRap,
                 TenRap = input.TenRap,
                 DiaChi = input.DiaChi,
-                MaTaiKhoan = input.MaTaiKhoan,
             };
             await _dbContext.AddAsync(rap);
             await _dbContext.SaveChangesAsync();

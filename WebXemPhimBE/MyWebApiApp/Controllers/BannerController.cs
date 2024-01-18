@@ -43,6 +43,20 @@ namespace MyWebApiApp.Controllers
             await _dbContext.SaveChangesAsync();
         }
 
+        [HttpPut]
+        public async Task EditBanner([FromForm] EditBannerModel input)
+        {
+            var bannerToUpdate = await _dbContext.Banners.FindAsync(input.MaBanner);
+
+            var path = Path.Combine("wwwroot/images", input.Anh.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await input.Anh.CopyToAsync(stream);
+            }
+            bannerToUpdate.Ten = $"{this.Request.Scheme}://{this.Request.Host}/images/{input.Anh.FileName}";
+            await _dbContext.SaveChangesAsync();
+        }
+
         [HttpDelete]
         public async Task DeleteBanner(int id)
         {

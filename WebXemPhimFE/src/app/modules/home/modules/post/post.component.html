@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-md-3"></div>
 
-        <div class="col-md-7">
-            <div style="margin-top: 10px;">
+        <div class="col-md-6">
+            <div style="margin-top: 20px;">
                 <span class="custom-font" style="font-size: 30px; margin-top: 10px;">Trang Chủ ></span>
                 <span class="custom-font" style="font-size: 30px; margin-top: 10px; color: #337ab7;">
                     {{phim.tenPhim}}</span>
@@ -11,7 +11,7 @@
             <div style="margin: 20px 20px; display: flex;">
                 <img style="width: 257px; height: 457px; border-radius: 21px" [src]="phim.anhPhim" class="card-img-top"
                     alt="..." />
-                <div style="margin-left: 15px;">
+                <div style="margin-left: 15px; display: inline-grid;">
                     <span class="custom-font" style="font-size: 40px; font-weight: bold;">{{ phim.tenPhim }}</span>
                     <div class="custom-font" style="margin-bottom: 75px;">{{ phim.moTa }}</div>
                     <div>
@@ -37,7 +37,7 @@
                         </div>
                         <div>
                             <span class="bold-upper">Ngày Khỏi Chiếu:</span>
-                            <span> {{phim.ngayBatDau | date : 'dd/MM/yyy' }}</span>
+                            <span> {{phim.ngayTao | date : 'dd/MM/yyy' }}</span>
                         </div>
                     </div>
                 </div>
@@ -53,14 +53,16 @@
             </div>
             <div class="black-line"></div>
             <div class="gioChieu" *ngIf="selectedItem">
-                <div *ngFor="let item of xuatChieus">
-                    <span class="custom-font gioPhutChieu">{{item.gio}}:{{item.phut}}</span>
+                <div *ngFor="let item of xuatChieus" style=" display: inline-grid; align-items: center; justify-items: center;">
+                    <span class="custom-font gioPhutChieu" (click)="chonGhe(phim, item)">{{item.gio}}:{{item.phut}}</span>
                 </div>
             </div>
-
+            <div style="display: flex; align-items: center; justify-content: center; padding: 30px;">
+                <iframe width="560" height="315" [src]="safeUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
             <app-comment-of-post [id]="id" [comments]="comment"> </app-comment-of-post>
         </div>
 
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
     </div>
 </div>

@@ -17,7 +17,15 @@
     <div class="col-md-8">
       <div class="row">
         <span class="custom-font" style="font-size: 30px; margin-top: 10px;" *ngIf="selectedRaps">Bạn đang xem phim chiếu tại rạp: {{selectedRaps}}</span>
-        <span class="custom-font" style="font-size: 30px; margin-top: 10px;" *ngIf="!selectedRaps">Tất cả những phim đang chiếu: </span>
+        <div class="custom-font" style="font-size: 30px; margin-top: 10px; display: flex; justify-content: space-between;" *ngIf="!selectedRaps">
+          <span>
+            Tất cả những phim đang chiếu:
+          </span>
+          <span style=" padding: 10px; font-size: 20px; font-style: italic; color: #337ab7;">
+            *Vui Lòng chọn rạp trước khi chọn phim
+          </span>
+          
+        </div>
         <div class="col-md-3" *ngFor="let item of phims">
           <div style="margin: 20px 20px;">
             <img style="width: 227px; height: 360px; border-radius: 21px;" [src]="item.anhPhim" class="card-img-top" alt="..." routerLink="/home/post/{{item.maPhim}}">
@@ -30,6 +38,10 @@
                 <span class="text">
                   Thời Lượng:
               </span>{{item.thoiLuong}} phút</div>
+              <div class="custom-font">
+                <span class="text">
+                  Giá vé:
+              </span>{{item.gia | currency:'VND'}}</div>
           </div>
         </div>
       </div>

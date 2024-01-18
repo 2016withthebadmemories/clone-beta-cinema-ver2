@@ -13,8 +13,12 @@ export class BannerService {
     getAllBanner() {
        return this.httpClient.get<BannerDto[]>(environment.baseApiUrl + "Banner");
     }
-    createBanner(data: BannerDto) {
+    createBanner(data: FormData) {
         return this.httpClient.post(environment.baseApiUrl + "Banner", data)
+    }
+
+    editBanner(data: FormData) {
+        return this.httpClient.put(environment.baseApiUrl + "Banner", data)
     }
     delete(id: number) {
         return this.httpClient.delete(environment.baseApiUrl + `Banner?id=${id}`);

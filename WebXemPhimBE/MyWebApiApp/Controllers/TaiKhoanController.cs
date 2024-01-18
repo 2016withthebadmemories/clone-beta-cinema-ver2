@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
+using System.IO;
 
 namespace MyWebApiApp.Controllers
 {
@@ -43,13 +43,18 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpPost]
-        public async Task Add(TaiKhoanModel input)
+        public async Task Add([FromForm] TaiKhoanModel input)
         {
+            var path = Path.Combine("wwwroot/images", input.Anh.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await input.Anh.CopyToAsync(stream);
+            }
             var us = new TaiKhoan
             {
                 MaTaiKhoan = input.MaTaiKhoan,
                 MatKhau = input.MatKhau,
-                AnhDaiDien = input.AnhDaiDien,
+                AnhDaiDien = $"{this.Request.Scheme}://{this.Request.Host}/images/{input.Anh.FileName}",
                 Email = input.Email,
                 SoDienThoai = input.SoDienThoai,
                 NgaySinh = input.NgaySinh,
@@ -64,7 +69,24 @@ namespace MyWebApiApp.Controllers
         //    _dbContext.Entry(comment).State = EntityState.Modified;
         //    await _dbContext.SaveChangesAsync();
         //}
-
+        [HttpPut("update")]
+        public async Task Update([FromForm] UpdateTaiKhoanModel input)
+        {
+            var userToUpdate = await _dbContext.TaiKhoans.FindAsync(input.MaTaiKhoan);
+            if (input.Anh != null)
+            {
+                var path = Path.Combine("wwwroot/images", input.Anh.FileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await input.Anh.CopyToAsync(stream);
+                }
+                userToUpdate.AnhDaiDien = $"{this.Request.Scheme}://{this.Request.Host}/images/{input.Anh.FileName}";
+            }
+            userToUpdate.SoDienThoai = input.SoDienThoai;
+            userToUpdate.Email = input.Email;
+            userToUpdate.MatKhau = input.MatKhau;
+            await _dbContext.SaveChangesAsync();
+        }
         [HttpDelete]
         public async Task Delete(int id)
         {
@@ -97,8 +119,31 @@ namespace MyWebApiApp.Controllers
             });
         }
 
-        [HttpPut]
-        public IActionResult Edit(string id, ChangePasswordModel input)
+        [HttpPut("updateKhongAnh")]
+        public IActionResult Edit(ChangePasswordModel input)
+        {
+            try
+            {
+                var user = _dbContext.TaiKhoans.SingleOrDefault(hh => hh.MaTaiKhoan == input.MaTaiKhoan);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                // Update
+                user.SoDienThoai = input.SoDienThoai;
+                user.Email = input.Email;
+                user.MatKhau = input.MatKhau;
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("doiMatKhau")]
+        public IActionResult editt(string id, ChangePasswordModel input)
         {
             try
             {

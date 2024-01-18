@@ -1,6 +1,8 @@
 ﻿using MyWebApiApp.Data;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace MyWebApiApp.Models
 {
@@ -24,6 +26,10 @@ namespace MyWebApiApp.Models
 
         public DateTime NgayKetThuc { get; set; }
 
+        public DateTime NgayTao { get; set; }
+
+        public string LinkTrailer { get; set; }
+
         public string QuocGia { get; set; }
 
         public string HangPhim { get; set; }
@@ -37,5 +43,34 @@ namespace MyWebApiApp.Models
         public string ThoiLuong { get; set; }
 
         public int MaRap { get; set; }
+
+        public string TenRap { get; set; }
+
+        public IFormFile AnhPhimFile { get; set; }
+
+    }
+
+    public class XuatChieuPhim
+    {
+        public string NgayChieu { get; set; }
+
+
+        public string Gio { get; set; }
+        public string Phut { get; set; }
+    }
+
+    public class RequestXuatChieu
+    {
+        public int MaPhim { get; set; }
+        public int MaPhong { get; set; }
+
+        public List<XuatChieuPhim> XuatChieus { get; set; }
+    }
+
+    public class UpdateXuatChieuRequest
+    {
+        public int MaXuatChieu { get; set; }
+        public int Gio { get; set; }
+        public int Phut { get; set; }
     }
 }

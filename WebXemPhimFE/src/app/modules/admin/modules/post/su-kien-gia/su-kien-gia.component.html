@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Cập nhật giá</h2>
+<head>
+    <script src="https://cdn.tiny.cloud/1/dqwo69om78lgg65iip79iqjovj7vklmwua8boq08v557npwh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<mat-dialog-content class="mat-typography">
+        <mat-form-field style="width: 100%;">
+              <mat-label>Rạp</mat-label>
+              <mat-select [(ngModel)]="listMaRap" multiple>
+                <mat-option *ngFor="let data of raps" [value]="data.maRap">
+                  {{ data.tenRap }}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Giá</mat-label>
+            <mat-select [(ngModel)]="gia" multiple>
+                <mat-option *ngFor="let data of daysAndPrices" [value]="data.giaVe">
+                  {{ data.Ten }}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Huỷ</button>
+    <button mat-button (click)="capNhatGia()">Cập nhật</button>
+</mat-dialog-actions>

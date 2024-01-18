@@ -22,10 +22,42 @@ namespace MyWebApiApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<XuatChieu>> GetAllXuatChieu()
+        public async Task<IEnumerable<XuatChieuRequestModel>> GetAllXuatChieu()
         {
-            return await _dbContext.XuatChieus.ToListAsync();
+            var xuatChieus = await _dbContext.XuatChieus.ToListAsync();
+
+            var result = xuatChieus.Select(xuatChieu => new XuatChieuRequestModel
+            {
+                MaXuatChieu = xuatChieu.MaXuatChieu,
+                NgayChieu = xuatChieu.NgayChieu,
+                Gio = xuatChieu.Gio,
+                Phut = xuatChieu.Phut,
+                MaPhim = xuatChieu.MaPhim,
+                MaPhong = xuatChieu.MaPhong,
+                TenPhim = _dbContext.Phims
+                            .Where(p => p.MaPhim == xuatChieu.MaPhim)
+                            .Select(p => p.TenPhim)
+                            .FirstOrDefault(),
+                TenRap = _dbContext.Raps
+                    .Where(r => r.MaRap == _dbContext.Phims
+                                           .Where(p => p.MaPhim == xuatChieu.MaPhim)
+                                           .Select(p => p.MaRap)
+                                           .FirstOrDefault())
+                    .Select(r => r.TenRap)
+                    .FirstOrDefault(),
+                TenPhong = _dbContext.Phongs
+                    .Where(r => r.MaPhong == _dbContext.XuatChieus
+                                           .Where(p => p.MaPhong == xuatChieu.MaPhong)
+                                           .Select(p => p.MaPhong)
+                                           .FirstOrDefault())
+                    .Select(r => r.TenPhong)
+                    .FirstOrDefault()
+
+            });
+
+            return result;
         }
+
 
         [HttpPost("byPhim")]
         public async Task<IEnumerable<XuatChieu>> GetXuatChieuByPhim(XuatChieuRequestModel model)
@@ -44,7 +76,8 @@ namespace MyWebApiApp.Controllers
                 NgayChieu = input.NgayChieu,
                 Gio = input.Gio,
                 Phut = input.Phut,
-                MaPhim = input.MaPhim
+                MaPhim = input.MaPhim,
+                MaPhong = input.MaPhong
             };
             await _dbContext.AddAsync(xc);
             await _dbContext.SaveChangesAsync();

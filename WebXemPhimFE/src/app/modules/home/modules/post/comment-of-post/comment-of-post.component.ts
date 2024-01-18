@@ -28,7 +28,7 @@ export class CommentOfPostComponent {
     const comment = {
       noiDung: this.comment,
       maPhim: this.id,
-      maTaiKhoan: maTaiKhoan
+      maTaiKhoan: maTaiKhoan,
     } as BinhLuanDto;
     this.commentService.createComment(comment).subscribe(s => {
       this.GetAll();
@@ -41,7 +41,6 @@ export class CommentOfPostComponent {
   GetAll() {
     this.postService.getComment(this.id).subscribe(s => 
       {
-        console.log("🚀 ~ file: comment-of-post.component.ts:45 ~ CommentOfPostComponent ~ GetAll ~ comments:", s);
         this.comments = s;  
       });
   }

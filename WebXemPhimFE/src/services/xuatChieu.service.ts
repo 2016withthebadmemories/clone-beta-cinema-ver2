@@ -20,6 +20,9 @@ export class XuatChieuService {
     createXuatChieu(data: XuatChieuDto) {
         return this.httpClient.post<XuatChieuDto>(environment.baseApiUrl + "XuatChieu", data)
     }
+    editXuatChieu(data: XuatChieuDto) {
+        return this.httpClient.put<XuatChieuDto>(environment.baseApiUrl + "XuatChieu", data)
+    }
     delete(id: number) {
         return this.httpClient.delete(environment.baseApiUrl + `XuatChieu?id=${id}`);
     }
@@ -31,8 +34,12 @@ export interface XuatChieuDto{
     phut: string;
     gio: string;
     maPhim: number;
+    tenPhim: string;
+    tenRap: string;
+    tenPhong: string;
+    maPhong: number;
 }
-  
+
 export interface XuatChieuRequest{
     ngay: number;
     thang: number;

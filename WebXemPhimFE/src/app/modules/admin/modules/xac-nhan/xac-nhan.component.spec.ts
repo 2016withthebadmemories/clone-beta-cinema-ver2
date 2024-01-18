@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { XacNhanComponent } from './xac-nhan.component';
+
+describe('XacNhanComponent', () => {
+  let component: XacNhanComponent;
+  let fixture: ComponentFixture<XacNhanComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ XacNhanComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(XacNhanComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

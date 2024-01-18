@@ -1,11 +1,20 @@
 <mat-sidenav-container class = "tp-container">
     <mat-sidenav mode = "side" opened>
-        <h1 class="title">Admin</h1>
+        <h1 class="title"><img alt="" style="height: 55px;" src="https://localhost:5001/images/logo.png" class="pointer-hover"></h1>
         <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle routerLink="/admin/topic" value="bold">Topic</mat-button-toggle>
-            <mat-button-toggle routerLink="/admin/post" value="italic">Post</mat-button-toggle>
-            <mat-button-toggle routerLink="/admin/comment" value="underline">Comment</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/thong-ke" value="bold">Thống Kê</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/user" value="bold">Quản Lý Tài Khoản</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/rap" value="bold">Quản Lý Rạp</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/phong" value="bold">Quản Lý Phòng</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/ghe" value="bold">Quản Lý Ghế</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/topic" value="bold">Thêm Banner</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/post" value="italic">Quản Lý Phim</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/ve" value="italic">Quản Lý Vé</mat-button-toggle>
+            <mat-button-toggle class="custom-font line" routerLink="/admin/xuatChieu" value="italic">Quản Lý Xuất Chiếu</mat-button-toggle>
+            <!-- <mat-button-toggle class="custom-font line" routerLink="/admin/dat-ve" value="italic">Đặt vé</mat-button-toggle> -->
+            <mat-button-toggle class="custom-font line" routerLink="/admin/comment" value="underline">Quản Lý Bình Luận</mat-button-toggle>
           </mat-button-toggle-group>
+          <div class="custom-font" style="color: #337ab7; margin-top: 230px; margin-left: 33px;"> (©) – Copyrighted: Beta Cinema</div>
     </mat-sidenav>
     <mat-sidenav-content>
         <div style="margin-left: 10px;

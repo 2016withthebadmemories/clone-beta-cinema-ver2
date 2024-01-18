@@ -13,6 +13,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyWebApiApp.Data;
 using MyWebApiApp.Models;
+using MyWebApiApp.Services;
+using ProGCoder_MomoAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +41,15 @@ namespace MyWebApiApp
             {
                 option.UseSqlServer(Configuration.GetConnectionString("MyDB"));
             });
+            services.AddControllersWithViews();
+            services.AddScoped<IPayPalService, PayPalService>();
 
+            services.Configure<MomoOptionModel>(Configuration.GetSection("MomoAPI"));
+            services.AddScoped<IMomoService, MomoService>();
+
+
+            // Configure the HTTP request pipeline.
+           
             services.Configure<Appsetting>(Configuration.GetSection("Appsettings"));
             var secretKey = Configuration["AppSettings:SecretKey"];
             var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
@@ -92,7 +102,7 @@ namespace MyWebApiApp
             }
 
             app.UseHttpsRedirection();
-
+            
             app.UseRouting();
             app.UseCors();
 

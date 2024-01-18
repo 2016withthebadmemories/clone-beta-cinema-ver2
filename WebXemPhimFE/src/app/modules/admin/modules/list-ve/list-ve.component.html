@@ -1,0 +1,55 @@
+<h1>Vé</h1>
+<section>
+    <div class="example-button-row">
+      <!-- <button (click)="create()" mat-raised-button color="primary">Create</button> -->
+    </div>
+  </section>
+    <div class="body">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Email</th>
+                    <th>Ngày đặt vé</th>
+                    <th>Xuất chiếu</th>
+                    <th>Tên phim</th>
+                    <th>Tên rạp</th>
+                    <th>Tên phòng</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th>Ghế đã đặt</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>                          
+                  <ng-container *ngFor="let item of ve">
+                    <tr>
+                      <td>{{item.email}}</td>
+                      <td>{{item.ngayDatVe | date : 'dd/MM/yyy' }}</td>
+                      <td>{{item.xuatChieu.gio}}:{{item.xuatChieu.phut}}</td>
+                      <td>{{item.xuatChieu.tenPhim}}</td>
+                      <td>{{item.xuatChieu.tenRap}}</td>
+                      <td>{{item.xuatChieu.tenPhong}}</td>
+                      <td>{{item.soLuong}} vé</td>
+                      <td>{{item.tongGia | currency:'VND':'symbol':'1.0-0'}}</td>
+                      <td><span *ngFor="let ghe of item.ghes; let last = last">
+                        {{ ghe.tenGhe }}{{ !last ? ', ' : '' }}
+                      </span></td>
+                      <td>
+                        <!-- <button (click)="edit(item)" mat-raised-button color="primary">Edit</button> -->
+                        <button (click)="deleteVe(item.maDatVe ? item.maDatVe : 0)"  mat-raised-button color="accent">Xoá</button></td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+<div>
+    
+</div>

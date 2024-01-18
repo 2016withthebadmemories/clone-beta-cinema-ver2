@@ -5,7 +5,7 @@ button {
     margin-top: 30px;
 }
 .bg {
-    background-image: url('https://tmdpc.vn/media/news/2607_Spiderman20185.jpg');
+    background-image: url('https://localhost:5001/images/2607_Spiderman20185.jpg');
     background-size: cover; /* Đảm bảo hình nền kích thước cover toàn bộ body */
     background-position: center; /* Đặt hình nền ở giữa */
     background-repeat: no-repeat; /* Không lặp lại hình nền */

@@ -1,0 +1,38 @@
+<!-- Trong file .html của component -->
+<div class="chart-container">
+    <div class="chart-header">
+      <button (click)="loadChartWithDate(-1)">Ngày Trước</button>
+      <div>
+        <span class="chart-date">{{ currentDate | date : 'dd/MM/yyyy' }} - Doanh thu: </span>
+        <span class="chart-date" style="color: #337ab7;"> {{totalTongTien | currency:'VND':'symbol':'1.0-0'}}</span>
+      </div>
+
+      <button (click)="loadChartWithDate(1)">Ngày Sau</button>
+    </div>
+    <div *ngIf="chartData" class="chart-content">
+      <div class="span-ten custom-font">
+        <span>Biểu đồ doanh thu phim theo ngày: </span>
+      </div>
+      <canvas baseChart
+              [datasets]="chartData"
+              [labels]="chartLabels"
+              [options]="chartOptions"
+              [chartType]="chartType">
+      </canvas>
+      
+    </div>
+
+    <div *ngIf="chartData" class="chart-content">
+      <div class="span-ten custom-font">
+        <span>Biểu đồ doanh thu của rạp theo ngày: </span>
+      </div>
+      <canvas baseChart
+              [datasets]="chartDataRap"
+              [labels]="chartLabelsRap"
+              [options]="chartOptionsRap"
+              [chartType]="chartTypeRap">
+      </canvas>
+      
+    </div>
+  </div>
+  

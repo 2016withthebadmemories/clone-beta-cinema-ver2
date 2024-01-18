@@ -1,0 +1,43 @@
+/* Trong file .css hoặc .scss của component */
+.chart-container {
+    display: block;
+    margin: 20px; /* Tùy chỉnh khoảng cách giữa phần tử và lề ngoại vi */
+  }
+  
+  .chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Tùy chỉnh khoảng cách giữa nút và ngày */
+  }
+  
+  .chart-header button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #3498db; /* Màu nền của nút */
+    color: #ffffff; /* Màu chữ của nút */
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Tùy chỉnh khoảng cách giữa các nút */
+  }
+  
+  .chart-header button:hover {
+    background-color: #2980b9; /* Màu nền khi hover */
+  }
+  
+  .chart-date {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .chart-content {
+    /* Các kiểu dáng cho nội dung biểu đồ (nếu cần) */
+  }
+  
+  .span-ten {
+    font-size: 40px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

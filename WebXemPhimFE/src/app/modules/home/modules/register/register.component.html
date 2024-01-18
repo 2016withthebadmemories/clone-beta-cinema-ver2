@@ -7,22 +7,22 @@
         <div class="row">
           <h2>Đăng Ký</h2>
           <form (ngSubmit)="submit($event)">
-            <div>
+            <div style="margin-top: 15px;">
               <label for="username">Email :</label>
               <input type="text" class="form-control" id="username" name="username" [(ngModel)]="email" required>
             </div>
-            <div>
+            <div style="margin-top: 15px;">
               <label for="password">Mật Khẩu :</label>
               <input type="password" class="form-control" id="password" name="password" [(ngModel)]="matKhau" required>
             </div>
-            <div>
+            <div style="margin-top: 15px;">
                 <label for="username">Số điện thoại :</label>
                 <input type="text" class="form-control" id="username" name="username" [(ngModel)]="soDienThoai" required>
             </div>
-            <!-- <div>
-                <label for="username">Ảnh Đại Diện:</label>
-                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="anhDaiDien" required>
-            </div> -->
+            <label style="margin-top: 15px;" >Ảnh Đại Diện:</label>
+            <div>
+              <input type="file" (change)="onFileSelected($event)">
+            </div>
             <button class="btn btn-success" type="submit">Đăng ký</button>
           </form>
         </div>

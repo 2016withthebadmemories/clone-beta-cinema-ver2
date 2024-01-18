@@ -1,34 +1,86 @@
-<h2 mat-dialog-title>{{this.post.maPhim ? 'Update' :'Create'}}</h2>
+<h2 mat-dialog-title>{{this.post.maPhim ? 'Cập nhật' :'Tạo mới'}}</h2>
+<head>
+    <script src="https://cdn.tiny.cloud/1/dqwo69om78lgg65iip79iqjovj7vklmwua8boq08v557npwh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
 <mat-dialog-content class="mat-typography">
     <form style="width: 100%;">
         <mat-form-field appearance="fill" style="width: 100%;">
-            <mat-label>Title</mat-label>
-            <input matInput name="title" [(ngModel)]="post.tenPhim" >
+            <mat-label>Tên phim</mat-label>
+            <input matInput name="tenPhim" [(ngModel)]="post.tenPhim" >
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 100%;">
-            <mat-label>Thumnail</mat-label>
-            <input matInput name="img" [(ngModel)]="post.anhPhim" >
+            <mat-label>Mô tả</mat-label>
+            <input matInput name="moTa" [(ngModel)]="post.moTa" >
         </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Diễn viên</mat-label>
+            <input matInput name="dienVien" [(ngModel)]="post.dienVien" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Đạo diễn</mat-label>
+            <input matInput name="daodien" [(ngModel)]="post.daodien" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Giá</mat-label>
+            <input matInput name="gia" [(ngModel)]="post.gia" >
+        </mat-form-field>
+        <!-- <mat-form-field>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [formGroup]="dateRangeFormService.range" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date">
+              <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field> -->
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Quốc gia</mat-label>
+            <input matInput name="quocGia" [(ngModel)]="post.quocGia" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Hãng phim</mat-label>
+            <input matInput name="hangPhim" [(ngModel)]="post.hangPhim" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Phiên bản</mat-label>
+            <input matInput name="phienBan" [(ngModel)]="post.phienBan" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Link Trailer</mat-label>
+            <input matInput name="linkTrailer" [(ngModel)]="post.linkTrailer" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Thể Loại</mat-label>
+            <input matInput name="theLoai" [(ngModel)]="post.theLoai" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Thời lượng</mat-label>
+            <input matInput name="thoiLuong" [(ngModel)]="post.thoiLuong" >
+        </mat-form-field>
+        <input type="file" (change)="onFileSelected($event)">
+        <mat-checkbox [(ngModel)]="post.trangThai" name="trangThai" class="example-margin" (click)="checkTrangThai()">Active</mat-checkbox>
     </form>
-    <div style="width: 100%;">
+    <div style="width: 100%;" *ngIf="!(this.post.maPhim)">
         <mat-form-field style="width: 100%;">
-          <mat-label>Topic</mat-label>
-          <!-- <mat-select [(ngModel)]="post.topicID">
-            <ng-container *ngFor="let topic of topics" >
-                <mat-option [value]="topic.id">{{ topic.name }}</mat-option>
-            </ng-container>
-          </mat-select> -->
+          <mat-label>Rạp</mat-label>
+          <mat-select [(ngModel)]="listMaRap" multiple>
+            <mat-option *ngFor="let data of raps" [value]="data.maRap">
+              {{ data.tenRap }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
-    <div>
+      
+    <!-- <div>
         <editor 
         [init]="init"
         [(ngModel)]="post.tenPhim"
-        name="conten">
+        name="content">
         </editor>
-    </div>
+    </div> -->
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button (click)="close()">Cancel</button>
-    <button mat-button (click)="create()">{{this.post.maPhim ? 'Update' :'Create'}}</button>
+    <button mat-button (click)="close()">Huỷ</button>
+    <button mat-button (click)="create()">{{this.post.maPhim ? 'Cập nhật' :'Tạo mới'}}</button>
 </mat-dialog-actions>

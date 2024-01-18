@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{this.ghe.maGhe ? 'Cập nhật' :'Tạo mới'}}</h2>
+<head>
+    <script src="https://cdn.tiny.cloud/1/dqwo69om78lgg65iip79iqjovj7vklmwua8boq08v557npwh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<mat-dialog-content class="mat-typogghehy">
+    <form style="width: 100%;">
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Tên Ghế</mat-label>
+            <input matInput name="tenghe" [(ngModel)]="ghe.tenGhe" >
+        </mat-form-field>
+    </form>
+    <div style="width: 100%;">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Phòng</mat-label>
+          <mat-select [(ngModel)]="ghe.maPhong">
+            <ng-container *ngFor="let data of phongs" >
+                <mat-option [value]="data.maPhong">{{ data.tenPhong }}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Hàng</mat-label>
+            <input matInput name="hang" [(ngModel)]="ghe.hang" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Cột</mat-label>
+            <input matInput name="cot" [(ngModel)]="ghe.cot" >
+        </mat-form-field> -->
+      </div>
+      <mat-checkbox [(ngModel)]="ghe.tinhTrangGhe" name="tinhTrangGhe" class="example-margin" (click)="checkTrangThai()">Vip</mat-checkbox>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Huỷ</button>
+    <button mat-button (click)="create()">{{this.ghe.maGhe ? 'Cập nhật' :'Tạo mới'}}</button>
+</mat-dialog-actions>

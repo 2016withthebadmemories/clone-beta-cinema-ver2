@@ -13,7 +13,7 @@ namespace MyWebApiApp.Data
 
         public string DiaChi { get; set; }
 
-        public int MaTaiKhoan { get; set; }
+        public int? MaTaiKhoan { get; set; }
         [ForeignKey(nameof(MaTaiKhoan))]
         public TaiKhoan TaiKhoan { get; set; }
     }

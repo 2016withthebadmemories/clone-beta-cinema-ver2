@@ -16,9 +16,5 @@ namespace MyWebApiApp.Data
         public string GhiChu { get; set; }
 
         public int SoLuongGhe { get; set; }
-
-        public int MaXuatChieu { get; set; }
-        [ForeignKey(nameof(MaXuatChieu))]
-        public XuatChieu XuatChieu { get; set; }
     }
 }

@@ -1,0 +1,108 @@
+<h2 mat-dialog-title>{{ this.xc.maXuatChieu ? 'Cập nhật' :'Tạo mới' }}</h2>
+<head>
+  <script
+    src="https://cdn.tiny.cloud/1/dqwo69om78lgg65iip79iqjovj7vklmwua8boq08v557npwh/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"
+  ></script>
+</head>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="xuatChieuFg" style="width: 100%">
+    <div style="width: 100%">
+      <mat-form-field style="width: 100%">
+        <mat-label>Phim</mat-label>
+        <mat-select formControlName="maPhim">
+          <ng-container *ngFor="let data of post">
+            <mat-option [value]="data.maPhim">
+              {{ data.tenPhim }} - {{ data.tenRap }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div style="width: 100%">
+      <mat-form-field style="width: 100%">
+        <mat-label>Phòng</mat-label>
+        <mat-select formControlName="maPhong">
+          <ng-container *ngFor="let data of phongs">
+            <mat-option [value]="data.maPhong">
+              {{ data.tenPhong }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div *ngIf="!this.data?.xc?.maXuatChieu" formArrayName="xuatChieus">
+      <div *ngFor="let block of xuatChieuArray.controls; let i = index">
+        <div>
+          <span>Xuất chiếu {{ i + 1 }}</span>
+          <button
+            mat-raised-button
+            color="warn"
+            *ngIf="xuatChieuArray.controls.length > 1"
+            (click)="removeGroup(i)"
+          >
+            -
+          </button>
+        </div>
+        <form [formGroup]="block">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Ngày chiếu</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="ngayChieu"
+              name="ngayChieu"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="d-flex gap-4">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Giờ</mat-label>
+              <input matInput name="gio" formControlName="gio" />
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Phút</mat-label>
+              <input matInput name="phut" formControlName="phut" />
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <button mat-raised-button color="primary" (click)="addGroup()">+</button>
+    </div>
+    <div *ngIf="!!this.data?.xc?.maXuatChieu">
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>Ngày chiếu</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="ngayChieu"
+          name="ngayChieu"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="d-flex gap-4">
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Giờ</mat-label>
+          <input matInput name="gio" formControlName="gio" />
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Phút</mat-label>
+          <input matInput name="phut" formControlName="phut" />
+        </mat-form-field>
+      </div>
+
+      <button *ngIf="!this.data?.xc?.maXuatChieu" mat-raised-button color="primary" (click)="addGroup()">+</button>
+    </div>
+  </form>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Huỷ</button>
+    <button mat-button (click)="create()">
+      {{ this.xc.maXuatChieu ? 'Cập nhật' :'Tạo mới' }}
+    </button>
+  </mat-dialog-actions>
+</mat-dialog-content>

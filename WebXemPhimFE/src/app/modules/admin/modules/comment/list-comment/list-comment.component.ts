@@ -1,6 +1,7 @@
 import { MatDialog } from '@angular/material/dialog';
 import { CommentService } from './../../../../../../services/comment.service';
 import { Component } from '@angular/core';
+import { XacNhanComponent } from '../../xac-nhan/xac-nhan.component';
 
 @Component({
   selector: 'app-list-comment',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./list-comment.component.css']
 })
 export class ListCommentComponent {
-  public comment: BinhLuanDto[] = [];
+  public comment: GetBinhLuanDto[] = [];
   constructor(private commentService: CommentService, private dialog:MatDialog) { }
   
   ngOnInit() {
@@ -19,9 +20,22 @@ export class ListCommentComponent {
       this.comment = rs;
     })
   }
+
   deleteComment(id: number) {
-    this.commentService.delete(id).subscribe((rs) => {
-      this.getAllTopic();
+    this.openDeleteConfirmationDialog(id);
+  }
+  
+  openDeleteConfirmationDialog(id: number): void {
+    const dialogRef = this.dialog.open(XacNhanComponent, {
+      width: '300px', // You can adjust the width as needed
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.commentService.delete(id).subscribe((rs) => {
+          this.getAllTopic();
+        });
+      }
     });
   }
 }
@@ -32,5 +46,15 @@ export interface BinhLuanDto{
   maTaiKhoan: string;
   maPhim: number;
   anhDaiDien: string;
+  email: string;
+}
+
+export interface GetBinhLuanDto{
+  maBinhLuan: number;
+  noiDung: string;
+  ngayBinhLuan: string;
+  maTaiKhoan: string;
+  anhDaiDien: string;
+  tenPhim: string;
   email: string;
 }

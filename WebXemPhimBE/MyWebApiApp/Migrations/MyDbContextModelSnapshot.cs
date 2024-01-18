@@ -191,6 +191,9 @@ namespace MyWebApiApp.Migrations
                     b.Property<string>("HangPhim")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LinkTrailer")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("MaRap")
                         .HasColumnType("int");
 
@@ -201,6 +204,9 @@ namespace MyWebApiApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("NgayKetThuc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NgayTao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PhienBan")
@@ -238,9 +244,6 @@ namespace MyWebApiApp.Migrations
                     b.Property<string>("GhiChu")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaXuatChieu")
-                        .HasColumnType("int");
-
                     b.Property<int>("SoLuongGhe")
                         .HasColumnType("int");
 
@@ -251,8 +254,6 @@ namespace MyWebApiApp.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("MaPhong");
-
-                    b.HasIndex("MaXuatChieu");
 
                     b.ToTable("Phongs");
                 });
@@ -267,7 +268,7 @@ namespace MyWebApiApp.Migrations
                     b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MaTaiKhoan")
+                    b.Property<int?>("MaTaiKhoan")
                         .HasColumnType("int");
 
                     b.Property<string>("TenRap")
@@ -366,7 +367,7 @@ namespace MyWebApiApp.Migrations
                     b.Property<int>("MaGhe")
                         .HasColumnType("int");
 
-                    b.Property<int>("MaXuaChieu")
+                    b.Property<int>("MaXuatChieu")
                         .HasColumnType("int");
 
                     b.HasKey("MaVe");
@@ -375,7 +376,7 @@ namespace MyWebApiApp.Migrations
 
                     b.HasIndex("MaGhe");
 
-                    b.HasIndex("MaXuaChieu");
+                    b.HasIndex("MaXuatChieu");
 
                     b.ToTable("Ves");
                 });
@@ -393,6 +394,9 @@ namespace MyWebApiApp.Migrations
                     b.Property<int>("MaPhim")
                         .HasColumnType("int");
 
+                    b.Property<int>("MaPhong")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("NgayChieu")
                         .HasColumnType("datetime2");
 
@@ -402,6 +406,8 @@ namespace MyWebApiApp.Migrations
                     b.HasKey("MaXuatChieu");
 
                     b.HasIndex("MaPhim");
+
+                    b.HasIndex("MaPhong");
 
                     b.ToTable("XuatChieus");
                 });
@@ -480,24 +486,11 @@ namespace MyWebApiApp.Migrations
                     b.Navigation("Rap");
                 });
 
-            modelBuilder.Entity("MyWebApiApp.Data.Phong", b =>
-                {
-                    b.HasOne("MyWebApiApp.Data.XuatChieu", "XuatChieu")
-                        .WithMany()
-                        .HasForeignKey("MaXuatChieu")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("XuatChieu");
-                });
-
             modelBuilder.Entity("MyWebApiApp.Data.Rap", b =>
                 {
                     b.HasOne("MyWebApiApp.Data.TaiKhoan", "TaiKhoan")
                         .WithMany()
-                        .HasForeignKey("MaTaiKhoan")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MaTaiKhoan");
 
                     b.Navigation("TaiKhoan");
                 });
@@ -529,7 +522,7 @@ namespace MyWebApiApp.Migrations
 
                     b.HasOne("MyWebApiApp.Data.XuatChieu", "XuatChieu")
                         .WithMany()
-                        .HasForeignKey("MaXuaChieu")
+                        .HasForeignKey("MaXuatChieu")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -548,7 +541,15 @@ namespace MyWebApiApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MyWebApiApp.Data.Phong", "Phong")
+                        .WithMany()
+                        .HasForeignKey("MaPhong")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Phim");
+
+                    b.Navigation("Phong");
                 });
 #pragma warning restore 612, 618
         }

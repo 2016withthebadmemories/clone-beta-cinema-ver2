@@ -3,6 +3,7 @@ import { PostService } from 'src/services/post.service';
 import { PhimDto } from '../../modules/post/post.component';
 import { ActivatedRoute } from '@angular/router';
 import { BannerDto, BannerService } from 'src/services/banner.service';
+import { scrollToTop } from 'helper';
 
 @Component({
   selector: 'app-home-index',
@@ -19,10 +20,15 @@ export class HomeIndexComponent {
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
   ) { }
-
+  convertVND(value: string): string {
+    if (value && value.length > 0 && value[0] === '₫') {
+      return value.substring(1);
+    }
+    return value;
+  }
   ngOnInit() {
+    scrollToTop();
     this.activatedRoute.queryParams.subscribe((queryParams) => {
-      console.log("🚀 ~ file: home-index.component.ts:30 ~ HomeIndexComponent ~ this.activatedRoute.queryParams.subscribe ~ queryParams:", queryParams);
       this.selectedRaps = queryParams['rap'];
       if (this.selectedRaps) {
         this.getPhimByRap();
@@ -40,7 +46,6 @@ export class HomeIndexComponent {
   }
 
   getPhimByRap() {
-    console.log("Selected Raps:", this.selectedRaps);
     this.postService.getPhimByRap(this.selectedRaps).subscribe(rs => {
       this.phims = rs;
     });

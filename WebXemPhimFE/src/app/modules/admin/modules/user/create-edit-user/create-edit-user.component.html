@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{this.user.maTaiKhoan ? 'Cập nhật' :'Tạo mới'}}</h2>
+<head>
+    <script src="https://cdn.tiny.cloud/1/dqwo69om78lgg65iip79iqjovj7vklmwua8boq08v557npwh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<mat-dialog-content class="mat-typography">
+    <form style="width: 100%;">
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" [(ngModel)]="user.email" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Số điện thoại</mat-label>
+            <input matInput name="soDienThoai" [(ngModel)]="user.soDienThoai" >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Mật khẩu</mat-label>
+            <input matInput name="matKhau" [(ngModel)]="user.matKhau" >
+        </mat-form-field>
+        <div style="margin-bottom: 5px;">Ảnh đại diện</div>
+        <input type="file" (change)="onFileSelected($event)">
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Huỷ</button>
+    <button mat-button (click)="create()">{{this.user.maTaiKhoan ? 'Cập nhật' :'Tạo mới'}}</button>
+</mat-dialog-actions>

@@ -13,7 +13,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 100%;">
             <mat-label>Giá</mat-label>
-            <mat-select [(ngModel)]="gia" multiple>
+            <mat-select [(ngModel)]="gia">
                 <mat-option *ngFor="let data of daysAndPrices" [value]="data.giaVe">
                   {{ data.Ten }}
                 </mat-option>
